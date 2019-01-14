@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FaFirstAid, FaThumbtack, FaHeart, FaChevronUp, FaChevronDown, FaFish } from 'react-icons/fa'
 
-class Sidebar extends Component {
+export default class Sidebar extends Component {
   constructor(props) {
     super(props)
 
@@ -28,7 +28,7 @@ class Sidebar extends Component {
           </div>
         </div>
 
-        <ul className="list-group mt-4">
+        <ul className="profile-stats list-group mt-4">
           <li className="list-group-item d-flex justify-content-between align-items-center">
             Interactions
             <span className="badge badge-success badge-pill">14</span>
@@ -82,5 +82,3 @@ class Sidebar extends Component {
     )
   }
 }
-
-export default Sidebar

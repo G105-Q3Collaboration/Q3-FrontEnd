@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Login extends Component {
+export default class Login extends Component {
   render() {
     return (
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
@@ -19,5 +19,3 @@ class Login extends Component {
     )
   }
 }
-
-export default Login

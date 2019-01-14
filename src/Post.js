@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FaThumbsUp, FaPoop, FaSadCry, FaGrinSquint, FaTrash, FaHeart } from 'react-icons/fa'
 import Moment from 'react-moment'
 
-class Post extends Component {
+export default class Post extends Component {
   render() {
     return (
       <div className="post border p-0 mt-4">
@@ -19,11 +19,10 @@ class Post extends Component {
             <span className="reaction mr-1 text-warning"><FaSadCry /></span>
             <span className="reaction mr-1 text-warning"><FaGrinSquint /></span>
             <span className="reaction mr-1 text-danger"><FaHeart /></span>
-            <span className="reaction mr-1 text-info"><FaThumbsUp /></span>
+            <span className="reaction mr-1 text-info"><FaThumbsUp /></span>&nbsp;
+            <small>400 reactions</small>
           </div>
       </div>
     )
   }
 }
-
-export default Post

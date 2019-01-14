@@ -10,3 +10,7 @@ body {
 
 .post .card-img-top {
   border-radius: 0; }
+
+@media screen and (max-width: 414px) {
+  .sidebar .profile-stats {
+    display: none !important; } }

@@ -5,7 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Profile from './Profile'
 
-class App extends Component {
+export default class App extends Component {
 
   render() {
     return (
@@ -16,7 +16,7 @@ class App extends Component {
             <div>
               <Header />
               <div className="container">
-                <Route exact path="/profile/:username" component={Profile} />
+                <Route exact path="/:username" component={Profile} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/" component={Login} />
               </div>
@@ -28,5 +28,3 @@ class App extends Component {
     )
   }
 }
-
-export default App
