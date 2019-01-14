@@ -22,3 +22,5 @@ export default class Login extends Component {
     )
   }
 }
+ 
+export default Login

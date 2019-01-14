@@ -2,11 +2,43 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export default class Signup extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      showErrorMessage: false
+    }
+  }
+
+  handleSignUp = event => {
+    event.preventDefault()
+
+    const { inputPetname, inputUsername, inputPassword } = event.target
+
+    request('/accounts', 'post', {
+      petname: inputPetname.value,
+      username: inputUsername.value,
+      password: inputPassword.value
+    })
+      .then(response => {
+        this.setState({ showErrorMessage: false })
+
+        localStorage.setItem('token', response.data.token)
+        return request('/auth/token')
+      })
+      .then(response => {
+        this.props.setAuthentication(response.data)
+        this.props.history.push('/')
+      })
+      .catch(error => {
+        this.setState({ showErrorMessage: true })
+      })
+  }
+
   render() {
     return (
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
-        <h2>Create an Account</h2>
-        <form>
+        <form onSubmit={this.handleSignUp}>
           <div className="form-group">
             <label htmlFor="displayname">Pet Name</label>
             <input type="text" className="form-control" id="displayname" name="displayname" placeholder="enter your pet's name" required />
@@ -18,7 +50,10 @@ export default class Signup extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" name="password" placeholder="password"  required/>
+            <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
+          </div>
+          <div className={!this.state.showErrorMessage ? 'login-auth-error login-hide-auth-error' : 'login-auth-error'}>
+            Invalid Username or Password
           </div>
           <button type="submit" className="btn btn-success mr-2">Submit</button>
           <Link to="/">Already have an account?</Link>
