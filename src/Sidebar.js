@@ -66,15 +66,6 @@ export default class Sidebar extends Component {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
               </li>
-
-              <li className="list-group-item justify-content-between align-items-center">
-                <p className="lead"><FaFirstAid className="text-success" /> How to take care of me</p>
-                <p className="conten mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Labore asperiores officiis impedit, sunt recusandae temporibus in nam,
-                  perspiciatis libero eligendi facilis natus, minus fugit at cupiditate molestiae iusto illum reiciendis?
-                </p>
-              </li>
             </span>
           }
         </ul>

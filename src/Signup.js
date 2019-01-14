@@ -8,8 +8,8 @@ export default class Signup extends Component {
         <h2>Create an Account</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="petName">Pet Name</label>
-            <input type="text" className="form-control" id="petName" name="petName" placeholder="enter your pet's name" required />
+            <label htmlFor="displayname">Pet Name</label>
+            <input type="text" className="form-control" id="displayname" name="displayname" placeholder="enter your pet's name" required />
           </div>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -20,7 +20,7 @@ export default class Signup extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password"  required/>
           </div>
-          <button type="submit" className="btn btn-primary mr-2">Submit</button>
+          <button type="submit" className="btn btn-success mr-2">Submit</button>
           <Link to="/">Already have an account?</Link>
         </form>
       </div>
