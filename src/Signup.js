@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import request from 'utils/request.js'
+import request from './utils/request'
 
-class Signup extends Component {
-
+export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,12 +13,12 @@ class Signup extends Component {
   handleSignUp = event => {
     event.preventDefault()
 
-    const { inputPetname, inputUsername, inputPassword } = event.target
+    const { displayname, username, password } = event.target
 
     request('/accounts', 'post', {
-      petname: inputPetname.value,
-      username: inputUsername.value,
-      password: inputPassword.value
+      petname: displayname.value,
+      username: username.value,
+      password: password.value
     })
       .then(response => {
         this.setState({ showErrorMessage: false })
@@ -41,8 +40,8 @@ class Signup extends Component {
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
         <form onSubmit={this.handleSignUp}>
           <div className="form-group">
-            <label htmlFor="petName">Pet Name</label>
-            <input type="text" className="form-control" id="petName" name="petName" placeholder="enter your pet's name" required />
+            <label htmlFor="displayname">Pet Name</label>
+            <input type="text" className="form-control" id="displayname" name="displayname" placeholder="enter your pet's name" required />
           </div>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -56,11 +55,10 @@ class Signup extends Component {
           <div className={!this.state.showErrorMessage ? 'login-auth-error login-hide-auth-error' : 'login-auth-error'}>
             Invalid Username or Password
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-success mr-2">Submit</button>
+          <Link to="/">Already have an account?</Link>
         </form>
       </div>
     )
   }
 }
-
-export default Signup

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import request from 'utils/request.js'
+import request from './utils/request'
 
 export default class Login extends Component {
 
@@ -14,11 +14,11 @@ export default class Login extends Component {
     handleLogin = event => {
       event.preventDefault()
 
-      const { inputUsername, inputPassword } = event.target
+      const { username, password } = event.target
 
       request('/auth/login', 'post', {
-        username: inputUsername.value,
-        password: inputPassword.value
+        username: username.value,
+        password: password.value
       })
         .then(response => {
           this.setState({ showErrorMessage: false })
@@ -28,7 +28,7 @@ export default class Login extends Component {
         })
         .then(response => {
           this.props.setAuthentication(response.data)
-          this.props.history.push('/')
+          this.props.history.push(`/`)
         })
         .catch(error => {
           this.setState({ showErrorMessage: true })
@@ -38,7 +38,8 @@ export default class Login extends Component {
   render() {
     return (
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
-        <form>
+        <h2>Account Login</h2>
+        <form onSubmit={this.handleLogin}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Username</label>
             <input type="text" className="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="enter username" required />
@@ -47,7 +48,8 @@ export default class Login extends Component {
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-success mr-2">Submit</button>&nbsp;&nbsp;
+          <Link to="/signup">Create an Account</Link>
         </form>
       </div>
     )
