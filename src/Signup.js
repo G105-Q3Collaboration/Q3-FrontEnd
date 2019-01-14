@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import request from 'utils/request.js'
 
 class Signup extends Component {
 
@@ -23,7 +25,7 @@ class Signup extends Component {
         this.setState({ showErrorMessage: false })
 
         localStorage.setItem('token', response.data.token)
-        return request('/auth/token')
+        return request('/auth/login')
       })
       .then(response => {
         this.props.setAuthentication(response.data)
