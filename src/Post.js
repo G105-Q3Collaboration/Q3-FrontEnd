@@ -13,7 +13,7 @@ export default class Post extends Component {
           <button className="btn text-muted"><FaTrash /></button>
         </div>
         <p className="lead pl-3 pr-3">Lol i look handsome!</p>
-        <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg"/>
+        <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Cat"/>
           <div className="reactions p-2">
             <span className="reaction mr-1"><FaPoop /></span>
             <span className="reaction mr-1 text-warning"><FaSadCry /></span>

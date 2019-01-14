@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaFirstAid, FaThumbtack, FaHeart, FaChevronUp, FaChevronDown, FaFish } from 'react-icons/fa'
+import { FaThumbtack, FaHeart, FaChevronUp, FaChevronDown, FaFish } from 'react-icons/fa'
 
 export default class Sidebar extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class Sidebar extends Component {
     return (
       <div className="sidebar col-sm-4 mt-4">
         <div className="card">
-          <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Card image cap" />
+          <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Cat" />
           <div className="card-body center-aligned">
             <h5 className="card-title mb-0">Mr. Cat</h5>
             <small className="initialism text-muted">Cat, 8 years old</small>

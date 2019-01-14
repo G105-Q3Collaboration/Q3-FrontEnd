@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import request from './utils.js/request'
 export default class Signup extends Component {
 
   constructor(props) {
