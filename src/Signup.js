@@ -13,12 +13,12 @@ export default class Signup extends Component {
   handleSignUp = event => {
     event.preventDefault()
 
-    const { inputPetname, inputUsername, inputPassword } = event.target
+    const { displayname, username, password } = event.target
 
     request('/accounts', 'post', {
-      petname: inputPetname.value,
-      username: inputUsername.value,
-      password: inputPassword.value
+      petname: displayname.value,
+      username: username.value,
+      password: password.value
     })
       .then(response => {
         this.setState({ showErrorMessage: false })
