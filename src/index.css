@@ -7,3 +7,6 @@ body {
 .navbar-collapse input.form-control {
   margin-right: .5rem;
   width: auto; }
+
+.post .card-img-top {
+  border-radius: 0; }
