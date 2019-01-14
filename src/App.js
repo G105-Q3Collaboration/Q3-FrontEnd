@@ -12,19 +12,18 @@ export default class App extends Component {
     return (
       <div className="app">
         <BrowserRouter>
-          <Switch>
-
             <div>
               <Header />
               <div className="container">
-                <Route exact path="/profile/:username" component={Profile} />
-                <Route exact path="/customize/:username" component={CustomizeProfile} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/" component={Login} />
+                <Switch>
+                  <Route exact path="/profile/:username" component={Profile} />
+                  <Route exact path="/customize/:username" component={CustomizeProfile} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/" component={Login} />
+                </Switch>
               </div>
             <footer className="text-center mt-5">&copy; 2019. Squeaker!</footer>
             </div>
-          </Switch>
         </BrowserRouter>
       </div>
     )
