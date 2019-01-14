@@ -15,7 +15,7 @@ export default class Login extends Component {
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password"  required/>
           </div>
-          <button type="submit" className="btn btn-primary mr-2">Submit</button>&nbsp;&nbsp;
+          <button type="submit" className="btn btn-success mr-2">Submit</button>&nbsp;&nbsp;
           <Link to="/signup">Create an Account</Link>
         </form>
       </div>
