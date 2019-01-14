@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-class Signup extends Component {
+export default class Signup extends Component {
   render() {
     return (
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
+        <h2>Create an Account</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="petName">Pet Name</label>
-            <input type="text" className="form-control" id="petName" name="petName" placeholder="enter your pet's name" required />
+            <label htmlFor="displayname">Pet Name</label>
+            <input type="text" className="form-control" id="displayname" name="displayname" placeholder="enter your pet's name" required />
           </div>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -18,11 +20,10 @@ class Signup extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password"  required/>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-success mr-2">Submit</button>
+          <Link to="/">Already have an account?</Link>
         </form>
       </div>
     )
   }
 }
-
-export default Signup

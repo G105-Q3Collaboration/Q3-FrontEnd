@@ -4,8 +4,9 @@ import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
 import Profile from './Profile'
+import CustomizeProfile from './CustomizeProfile';
 
-class App extends Component {
+export default class App extends Component {
 
   render() {
     return (
@@ -17,6 +18,7 @@ class App extends Component {
               <Header />
               <div className="container">
                 <Route exact path="/profile/:username" component={Profile} />
+                <Route exact path="/customize/:username" component={CustomizeProfile} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/" component={Login} />
               </div>
@@ -28,5 +30,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

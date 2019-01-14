@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-
-class Feed extends Component {
+import AddPost from './AddPost'
+import Post from './Post'
+export default class Feed extends Component {
   render() {
     return (
       <div className="main col-sm-8 mt-4">
-        One of three columns
+        <AddPost />
+        <Post />
       </div>
     )
   }
 }
-
-export default Feed
