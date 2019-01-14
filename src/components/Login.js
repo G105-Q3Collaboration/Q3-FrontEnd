@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import request from './utils/request'
+import request from '../utils/request'
 
 export default class Login extends Component {
 
@@ -28,9 +28,10 @@ export default class Login extends Component {
         })
         .then(response => {
           this.props.setAuthentication(response.data)
-          this.props.history.push(`/`)
+          this.props.history.push(`/profile/${username.value}`)
         })
         .catch(error => {
+          console.log(error)
           this.setState({ showErrorMessage: true })
         })
     }

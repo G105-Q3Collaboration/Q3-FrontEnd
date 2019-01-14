@@ -16,3 +16,19 @@ body {
     width: auto;
   }
 }
+
+.post {
+
+  .card-img-top {
+    border-radius: 0;
+  }
+}
+
+.sidebar {
+
+  @media screen and (max-width: 414px) {
+    .profile-stats {
+      display: none !important;
+    }
+  }
+}
