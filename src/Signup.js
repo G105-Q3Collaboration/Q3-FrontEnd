@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import request from './utils.js/request'
-export default class Signup extends Component {
+import request from './utils/request'
 
+export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -24,7 +24,7 @@ export default class Signup extends Component {
         this.setState({ showErrorMessage: false })
 
         localStorage.setItem('token', response.data.token)
-        return request('/auth/token')
+        return request('/auth/login')
       })
       .then(response => {
         this.props.setAuthentication(response.data)
