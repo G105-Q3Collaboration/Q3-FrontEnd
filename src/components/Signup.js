@@ -9,7 +9,7 @@ export default class Signup extends Component {
       showErrorMessage: false
     }
   }
-
+  
   handleSignUp = event => {
     event.preventDefault()
 
