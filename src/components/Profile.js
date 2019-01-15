@@ -38,7 +38,7 @@ export default class App extends Component {
     return (
       <div className="profile row">
         <Sidebar username={this.state.username} profilepic={this.state.profilepic} bio={this.state.bio} age={this.state.age} type={this.state.type} eatinghabits={this.state.eatinghabits} quirks={this.state.quirks} />
-        <Feed />
+        <Feed id={this.props.location.state.id}/>
       </div>
     )
   }

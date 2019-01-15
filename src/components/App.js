@@ -29,6 +29,7 @@ export default class App extends Component {
         user: claim
       }
     })
+    console.log(claim)
   }
 
   componentDidMount() {
@@ -42,7 +43,7 @@ export default class App extends Component {
       <div className="app">
         <BrowserRouter>
             <div>
-              <Header />
+              <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user} />
               <div className="container">
                 <Switch>
                   <Route path="/profile/:username" component={Profile} user={this.state.authentication.user}/>
