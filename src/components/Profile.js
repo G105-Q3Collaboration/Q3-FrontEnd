@@ -37,7 +37,6 @@ export default class App extends Component {
   render() {
     return (
       <div className="profile row">
-
         <Sidebar username={this.state.username} profilepic={this.state.profilepic} bio={this.state.bio} age={this.state.age} type={this.state.type} eatinghabits={this.state.eatinghabits} quirks={this.state.quirks} />
         <Feed username={this.state.username} id={this.props.location.state.id} />
       </div>
