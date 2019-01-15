@@ -11,9 +11,6 @@ constructor(props) {
       localStorage.removeItem('token')
       this.props.setAuthentication(null)
     }
-    // else {
-    //   this.props.history.push("/")
-    // }
   }
 
   
