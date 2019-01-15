@@ -9,7 +9,7 @@ export default class Signup extends Component {
       showErrorMessage: false
     }
   }
-
+  
   handleSignUp = event => {
     event.preventDefault()
 
@@ -27,10 +27,10 @@ export default class Signup extends Component {
         return request('/auth/login')
       })
       .then(response => {
-        this.props.setAuthentication(response.data)
-        this.props.history.push('/')
+        this.props.history.push({pathname:`/customize/${username.value}`, state: {id:username.value}})
       })
       .catch(error => {
+        console.log(error)
         this.setState({ showErrorMessage: true })
       })
   }
