@@ -11,9 +11,9 @@ constructor(props) {
       localStorage.removeItem('token')
       this.props.setAuthentication(null)
     }
-    else {
-      this.props.history.push("/")
-    }
+    // else {
+    //   this.props.history.push("/")
+    // }
   }
 
   
@@ -34,20 +34,24 @@ constructor(props) {
                 <input className="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" />
                 <button className="btn btn-success my-2 my-sm-0" type="submit"><FaSearch /></button>
               </form>
+
               <span>
               {
               this.props.user ?
               <span style={{marginLeft: '5px'}}>
                 Welcome, {this.props.user.username}
-              </span> : null
+              </span> : <span style={{marginLeft: '5px'}}>
+                Please Sign In
+              </span>
             }
               </span>
               <span className="btn text-white" onClick={()=>this.SignInSignOutButton()}>
-              {this.props.user ? (<Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>,
-              <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>) :
+              {this.props.user ? <Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>:
                (<Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>,
                <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>) }
             </span>
+
+
             </div>
           </div>
         </nav>
