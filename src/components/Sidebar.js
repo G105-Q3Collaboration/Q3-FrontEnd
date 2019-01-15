@@ -20,11 +20,11 @@ export default class Sidebar extends Component {
     return (
       <div className="sidebar col-sm-4 mt-4">
         <div className="card">
-          <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Cat" />
+          <img className="card-img-top" src={this.props.profilepic} alt="Cat" />
           <div className="card-body center-aligned">
-            <h5 className="card-title mb-0">Mr. Cat</h5>
-            <small className="initialism text-muted">Cat, 8 years old</small>
-            <p className="lead mt-3 mb-0">I'm a cat and this is my headline - It has a character limit. TBD</p>
+            <h5 className="card-title mb-0">{this.props.username}</h5>
+            <small className="initialism text-muted">{this.props.type}, {this.props.age} years old</small>
+            <p className="lead mt-3 mb-0">{this.props.bio}</p>
           </div>
         </div>
 
@@ -41,7 +41,7 @@ export default class Sidebar extends Component {
 
         <ul className="list-group mt-4">
           <li className="list-group-item justify-content-between align-items-center">
-            <FaThumbtack className="text-primary" /> About Mr. Cat
+            <FaThumbtack className="text-primary" /> About {this.props.username}
             {
               this.state.collapse ?
                 <FaChevronDown className="text-muted float-right" onClick={this.handleAbout} />
@@ -56,14 +56,14 @@ export default class Sidebar extends Component {
               <li className="list-group-item justify-content-between align-items-center">
                 <span className="lead"><FaFish className="text-info" /> My Favorite Food</span>
                 <p className="conten mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  {this.props.eatinghabits}
               </p>
               </li>
 
               <li className="list-group-item justify-content-between align-items-center">
-                <p className="lead"><FaHeart className="text-danger" /> Stuff I Like</p>
+                <p className="lead"><FaHeart className="text-danger" /> Quirks About Me</p>
                 <p className="conten mt-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  {this.props.quirks}
               </p>
               </li>
             </span>
