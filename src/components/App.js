@@ -29,7 +29,6 @@ export default class App extends Component {
         user: claim
       }
     })
-    console.log(claim)
   }
 
   componentDidMount() {
