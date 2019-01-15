@@ -18,11 +18,11 @@ export default class App extends Component {
   axios.get('http://localhost:8000/accounts')
   .then(result => {
     let findThePet = result.data.find(ele => {return ele.username === this.props.location.state.id})
-  
+
   axios.get(`http://localhost:8000/accounts/${findThePet.id}`)
   .then(result => {const newProfile = result.data[0]
   this.setState({
-    username:newProfile.username, 
+    username:newProfile.username,
     profilepic: newProfile.profilepic,
     bio: newProfile.bio,
     age:newProfile.age,
@@ -38,7 +38,7 @@ export default class App extends Component {
     return (
       <div className="profile row">
         <Sidebar username={this.state.username} profilepic={this.state.profilepic} bio={this.state.bio} age={this.state.age} type={this.state.type} eatinghabits={this.state.eatinghabits} quirks={this.state.quirks} />
-        <Feed />
+        <Feed username={this.state.username} id={this.props.location.state.id} />
       </div>
     )
   }
