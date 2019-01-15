@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom'
 export default class Header extends Component {
 constructor(props) {
   super(props)
-  console.log(this.props.user)
 }
   SignInSignOutButton = () => {
-    console.log(this.props.user)
     if(this.props.user){
       localStorage.removeItem('token')
       this.props.setAuthentication(null)
@@ -45,7 +43,10 @@ constructor(props) {
             }
               </span>
               <span className="btn text-white" onClick={()=>this.SignInSignOutButton()}>
-              {this.props.user ? <Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link> : <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>}
+              {this.props.user ? (<Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>,
+              <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>) :
+               (<Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>,
+               <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>) }
             </span>
             </div>
           </div>
