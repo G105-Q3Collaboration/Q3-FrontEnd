@@ -3,9 +3,7 @@ import { FaSearch, FaUser, FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
-constructor(props) {
-  super(props)
-}
+
   SignInSignOutButton = () => {
     if(this.props.user){
       localStorage.removeItem('token')
@@ -13,7 +11,6 @@ constructor(props) {
     }
   }
 
-  
   render() {
     return (
       <header>
@@ -35,12 +32,12 @@ constructor(props) {
               <span>
               {
               this.props.user ?
-              <span style={{marginLeft: '5px'}}>
-                Welcome, {this.props.user.username}
-              </span> : <span style={{marginLeft: '5px'}}>
-                Please Sign In
-              </span>
-            }
+                <span style={{marginLeft: '5px'}}>
+                  Welcome, {this.props.user.username}
+                </span> : <span style={{marginLeft: '5px'}}>
+                  Please Sign In
+                </span>
+              }
               </span>
               <span className="btn text-white" onClick={()=>this.SignInSignOutButton()}>
               {this.props.user ? <Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>:

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaThumbsUp, FaPoop, FaSadCry, FaGrinSquint, FaTrash, FaHeart } from 'react-icons/fa'
 import Moment from 'react-moment'
 
-const Post = ({ username, content, createdAt}) => {
+const Post = ({ username, content, createdAt }) => {
   return (
     <div className="post border rounded p-0 mt-4">
       <div className="pl-3 controls d-flex justify-content-between align-items-center">

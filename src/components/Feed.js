@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AddPost from './AddPost'
 import Post from './Post'
 import axios from 'axios'
+const url = 'http://localhost:8000/accounts'
 export default class Feed extends Component {
   constructor(props) {
     super(props)
@@ -18,28 +19,44 @@ export default class Feed extends Component {
     this.getPosts()
   }
 
-  getPosts = () => {
-    axios.get('http://localhost:8000/accounts')
-    .then(response => {
-      let petid = response.data.find(ele => ele.username === this.props.id)
-      this.setState({ id: petid.id })
-      return petid
-    })
-    .then(petid => {
-      axios.get(`http://localhost:8000/accounts/${petid.id}/posts`)
-      .then(posts => {
-        this.setState({
-          posts: [...posts.data],
-          username: this.props.username
-        })
+  getAccount = async () => {
+    try {
+      let response = await axios.get(url)
+      let account = await response.data.find(ele => ele.username === this.props.id)
+      this.setState({ id: account.id })
+      return account
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  getPosts = async () => {
+    try {
+      const account = await this.getAccount()
+      const posts = await axios.get(`${url}/${account.id}/posts`)
+      this.setState({
+        posts: [...posts.data.reverse()],
+        username: this.props.username
       })
-    }).catch(error => console.log(error))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  addPost = async (post) => {
+    try {
+      const account = await this.getAccount()
+      await axios.post(`${url}/${account.id}/posts`, post)
+      this.getPosts()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
     return (
       <div className="main col-sm-8 mt-4">
-        <AddPost />
+        <AddPost addPost={this.addPost} />
         {
           this.state.posts.map(post =>
             <Post
