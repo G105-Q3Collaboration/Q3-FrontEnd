@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import AddPost from './AddPost'
 import Post from './Post'
 import axios from 'axios'
@@ -9,9 +10,9 @@ export default class Feed extends Component {
 
     this.state = {
       id: '',
-      username: '',
       posts : [],
-      loading : false
+      urlparams: '',
+      loggedin: ''
     }
   }
 
@@ -22,8 +23,11 @@ export default class Feed extends Component {
   getAccount = async () => {
     try {
       let response = await axios.get(url)
-      let account = await response.data.find(ele => ele.username === this.props.id)
-      this.setState({ id: account.id })
+      let account = await response.data.find(user => user.username === this.props.username)
+      this.setState({
+        id: account.id,
+        loggedin: this.props.user.username // if i pass this in, you can't see posts when you're logged out
+      })
       return account
     } catch(err) {
       console.log(err)
@@ -35,8 +39,7 @@ export default class Feed extends Component {
       const account = await this.getAccount()
       const posts = await axios.get(`${url}/${account.id}/posts`)
       this.setState({
-        posts: [...posts.data.reverse()],
-        username: this.props.username
+        posts: [...posts.data.reverse()]
       })
     } catch (err) {
       console.log(err)
@@ -68,20 +71,28 @@ console.log(id)
     return (
       <div className="main col-sm-8 mt-4">
         {
-          this.state.username &&
+          this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
         }
         {
+          this.state.loggedin ?
           this.state.posts.map(post =>
             <Post
               getPosts={this.getPosts}
               key={post.id}
-              postId={post.id}
-              username={this.state.username}
+              id={post.id}
+              username={this.props.username}
               content={post.content}
               deletePost={this.deletePost}
             />
           )
+          :
+          <div className="oops lead text-center mt-5">
+            <h3 className="text-muted">Posts preview is not available right meow</h3>
+            <p>
+              Please <Link to="/signup">sign-up</Link> to see <span className="username">{this.props.username}'s</span> full profile.
+            </p>
+          </div>
         }
       </div>
     )

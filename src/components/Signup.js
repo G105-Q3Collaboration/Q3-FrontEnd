@@ -9,7 +9,7 @@ export default class Signup extends Component {
       showErrorMessage: false
     }
   }
-  
+
   handleSignUp = event => {
     event.preventDefault()
 
@@ -22,14 +22,15 @@ export default class Signup extends Component {
     })
       .then(response => {
         this.setState({ showErrorMessage: false })
-
         localStorage.setItem('token', response.data.token)
         return request('/auth/login')
       })
       .then(response => {
+        this.props.setAuthentication(response.data)
         this.props.history.push({pathname:`/customize/${username.value}`, state: {id:username.value}})
       })
       .catch(error => {
+
         console.log(error)
         this.setState({ showErrorMessage: true })
       })
@@ -52,10 +53,13 @@ export default class Signup extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
           </div>
-          <div className={!this.state.showErrorMessage ? 'login-auth-error login-hide-auth-error' : 'login-auth-error'}>
-            Invalid Username or Password
-          </div>
-          <button type="submit" className="btn btn-success mr-2">Submit</button>
+          {
+            this.state.showErrorMessage &&
+            <div className="alert alert-danger">
+              Invalid Username or Password
+            </div>
+          }
+          <button type="submit" className="btn btn-success mr-3">Submit</button>
           <Link to="/">Already have an account?</Link>
         </form>
       </div>

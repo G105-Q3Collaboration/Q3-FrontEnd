@@ -3,10 +3,15 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0; }
+  body a:hover {
+    text-decoration: none; }
 
 .navbar-collapse input.form-control {
   margin-right: .5rem;
   width: auto; }
+
+.username {
+  text-transform: capitalize; }
 
 .post .card-img-top {
   border-radius: 0; }

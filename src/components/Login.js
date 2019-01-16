@@ -28,7 +28,7 @@ export default class Login extends Component {
         })
         .then(response => {
           this.props.setAuthentication(response.data)
-          this.props.history.push({pathname:`/profile/${username.value}`, state: {id:username.value}})
+          this.props.history.push({pathname:`/profile/${username.value}`, state: { username : username.value }})
         })
         .catch(error => {
           console.log(error)
@@ -49,7 +49,13 @@ export default class Login extends Component {
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
           </div>
-          <button type="submit" className="btn btn-success mr-2">Submit</button>&nbsp;&nbsp;
+          {
+            this.state.showErrorMessage &&
+            <div className="alert alert-danger">
+              Invalid Username or Password
+            </div>
+          }
+          <button type="submit" className="btn btn-success mr-3">Submit</button>
           <Link to="/signup">Create an Account</Link>
         </form>
       </div>

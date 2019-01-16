@@ -24,7 +24,6 @@ export default class App extends Component {
   setAuthentication = claim => {
     this.setState({
       authentication: {
-
         pending: false,
         user: claim
       }
@@ -45,10 +44,9 @@ export default class App extends Component {
               <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user} />
               <div className="container">
                 <Switch>
-                  <Route path="/profile/:username" component={Profile} user={this.state.authentication.user}/>
-                  <Route path="/customize/:username" component={CustomizeProfile} user={this.state.authentication.user} />
-                  {/* <AuthenticatedRoute path='/customize/:username' component={CustomizeProfile} authentication={this.state.authentication} /> */}
-                  <Route path="/signup" component={Signup} />
+                  <Route path="/profile/:username" render={(props) => <Profile {...props} authentication={this.state.authentication} user={this.state.authentication.user} />}  />
+                  <Route path="/customize/:username" render={(props) => <CustomizeProfile {...props} authentication={this.state.authentication} user={this.state.authentication.user} />} />
+                  <Route path="/signup" render={(props) => <Signup {...props} setAuthentication={this.setAuthentication}/>} />
                   <Route path="/" render={(props) => <Login {...props} setAuthentication={this.setAuthentication}/>} />
                 </Switch>
               </div>
