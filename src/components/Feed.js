@@ -56,7 +56,10 @@ export default class Feed extends Component {
   render() {
     return (
       <div className="main col-sm-8 mt-4">
-        <AddPost addPost={this.addPost} />
+        {
+          this.state.username &&
+          <AddPost addPost={this.addPost} />
+        }
         {
           this.state.posts.map(post =>
             <Post
