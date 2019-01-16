@@ -6,8 +6,7 @@ export default class AddPost extends Component {
     super(props)
 
     this.state = {
-      content: '',
-      posts: []
+      content: ''
     }
   }
 
@@ -24,15 +23,15 @@ export default class AddPost extends Component {
     this.setState({
       content: '',
     })
-
     this.props.addPost(post)
   }
 
   render() {
     return (
-      <div className="add-post border p-3 rounded">
+      <div className="add-post border p-3 rounded mb-4">
         <form onSubmit={this.onSubmit}>
-          <textarea className="form-control" rows="4" type="text" name="content" id="content" placeholder="Squeak..." value={this.state.content} onChange={this.onChange}></textarea>
+          <textarea onChange={this.onChange} className="form-control" rows="4" type="text" name="content" id="content"
+            placeholder="Squeak..." value={this.state.content}>{this.state.content}</textarea>
           <div className="controls d-flex justify-content-between align-items-center">
             <div className="post-types">
               <span className="btn text-muted"><FaBold /></span>

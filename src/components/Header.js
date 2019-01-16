@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default class Header extends Component {
 
   SignInSignOutButton = () => {
-    if(this.props.user){
+    if (this.props.user) {
       localStorage.removeItem('token')
       this.props.setAuthentication(null)
     }
@@ -29,22 +29,19 @@ export default class Header extends Component {
                 <button className="btn btn-success my-2 my-sm-0" type="submit"><FaSearch /></button>
               </form>
 
-              <span>
               {
-              this.props.user ?
-                <span style={{marginLeft: '5px'}}>
-                  Welcome, {this.props.user.username}
-                </span> : <span style={{marginLeft: '5px'}}>
-                  Please Sign In
-                </span>
+                this.props.user ?
+                <span className="ml-2 text-white username"> <FaUser /> Welcome, {this.props.user.username} </span>
+                :
+                <Link className="btn text-white ml-2" to="/">Sign In </Link>
               }
-              </span>
-              <span className="btn text-white" onClick={()=>this.SignInSignOutButton()}>
-              {this.props.user ? <Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>:
-               (<Link className="btn text-white" to="/"><FaSignInAlt />&nbsp; Sign Out</Link>,
-               <Link className="btn text-white" to="/signup"><FaUser />&nbsp; Sign up </Link>) }
-            </span>
 
+              {
+                this.props.user ?
+                  <Link className="btn text-white" to="/" onClick={() => this.SignInSignOutButton()}><FaSignInAlt />&nbsp; Sign Out</Link>
+                :
+                  <Link className="btn text-white" to="/signup"> Sign up </Link>
+              }
 
             </div>
           </div>

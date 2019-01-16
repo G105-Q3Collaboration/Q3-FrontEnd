@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
         <div className="card">
           <img className="card-img-top" src={this.props.profilepic} alt="Cat" />
           <div className="card-body center-aligned">
-            <h5 className="card-title mb-0">{this.props.username}</h5>
+            <h5 className="username card-title mb-0">{this.props.username}</h5>
             <small className="initialism text-muted">{this.props.type}, {this.props.age} years old</small>
             <p className="lead mt-3 mb-0">{this.props.bio}</p>
           </div>

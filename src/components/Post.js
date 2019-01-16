@@ -4,9 +4,9 @@ import Moment from 'react-moment'
 
 const Post = ({ username, content, createdAt }) => {
   return (
-    <div className="post border rounded p-0 mt-4">
+    <div className="post border rounded p-0 mb-4">
       <div className="pl-3 controls d-flex justify-content-between align-items-center">
-        <p className="thumb mt-3">{username} shared a post:<br/>
+        <p className="username mt-3">{username} shared a post:<br/>
           <small><Moment format="MMM D, YYYY" date={createdAt} /></small>
         </p>
         <button className="btn text-muted"><FaTrash /></button>
