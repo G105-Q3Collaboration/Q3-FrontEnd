@@ -53,6 +53,17 @@ export default class Feed extends Component {
     }
   }
 
+  deletePost = (id) => {
+console.log(id)
+    // try {
+    //   const account = await this.getAccount()
+    //   await axios.delete(`${url}/${account.id}/posts/${id}`)
+    //   this.getPosts()
+    // } catch (err) {
+    //   console.log(err)
+    // }
+  }
+
   render() {
     return (
       <div className="main col-sm-8 mt-4">
@@ -65,8 +76,10 @@ export default class Feed extends Component {
             <Post
               getPosts={this.getPosts}
               key={post.id}
+              postId={post.id}
               username={this.state.username}
               content={post.content}
+              deletePost={this.deletePost}
             />
           )
         }
