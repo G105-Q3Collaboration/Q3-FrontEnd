@@ -57,11 +57,9 @@ export default class Feed extends Component {
   }
 
   deletePost = async (id) => {
-console.log(id)
     try {
       const account = await this.getAccount()
       await axios.delete(`${url}/${account.id}/posts/${id}`)
-      console.log("success!");
       
       this.getPosts()
     } catch (err) {
@@ -84,6 +82,7 @@ console.log(id)
               key={post.id}
               id={post.id}
               username={this.props.username}
+              loggedInPerson={this.state.loggedin}
               content={post.content}
               deletePost={this.deletePost}
             />
