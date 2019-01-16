@@ -22,7 +22,7 @@ export default class Feed extends Component {
   getAccount = async () => {
     try {
       let response = await axios.get(url)
-      let account = await response.data.find(ele => ele.username === this.props.id)
+      let account = await response.data.find(ele => ele.username === this.props.username)
       this.setState({ id: account.id })
       return account
     } catch(err) {

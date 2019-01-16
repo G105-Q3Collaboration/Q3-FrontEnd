@@ -28,7 +28,7 @@ export default class Login extends Component {
         })
         .then(response => {
           this.props.setAuthentication(response.data)
-          this.props.history.push({pathname:`/profile/${username.value}`, state: {id:username.value}})
+          this.props.history.push({pathname:`/profile/${username.value}`, state: { username:username.value }})
         })
         .catch(error => {
           console.log(error)

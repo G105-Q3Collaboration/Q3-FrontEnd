@@ -32,7 +32,7 @@ export default class AddPost extends Component {
     return (
       <div className="add-post border p-3 rounded">
         <form onSubmit={this.onSubmit}>
-          <textarea className="form-control" rows="4" type="text" name="content" id="content" placeholder="What's on your mind?" onChange={this.onChange}></textarea>
+          <textarea className="form-control" rows="4" type="text" name="content" id="content" placeholder="Squeak..." value={this.state.content} onChange={this.onChange}></textarea>
           <div className="controls d-flex justify-content-between align-items-center">
             <div className="post-types">
               <span className="btn text-muted"><FaBold /></span>
