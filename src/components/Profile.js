@@ -34,16 +34,16 @@ export default class App extends Component {
         {
           this.state.account.map(pet =>
           <Sidebar
-              key={pet.id}
-              id={pet.id}
-              username={pet.username}
-              profilepic={pet.profilepic}
-              bio={pet.bio}
-              age={pet.age}
-              type={pet.type}
-              eatinghabits={pet.eatinghabits}
-              quirks={pet.quirks}
-            />
+            key={pet.id}
+            id={pet.id}
+            username={pet.username}
+            profilepic={pet.profilepic}
+            bio={pet.bio}
+            age={pet.age}
+            type={pet.type}
+            eatinghabits={pet.eatinghabits}
+            quirks={pet.quirks}
+          />
           )
         }
         {
