@@ -56,15 +56,17 @@ export default class Feed extends Component {
     }
   }
 
-  deletePost = (id) => {
+  deletePost = async (id) => {
 console.log(id)
-    // try {
-    //   const account = await this.getAccount()
-    //   await axios.delete(`${url}/${account.id}/posts/${id}`)
-    //   this.getPosts()
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try {
+      const account = await this.getAccount()
+      await axios.delete(`${url}/${account.id}/posts/${id}`)
+      console.log("success!");
+      
+      this.getPosts()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {

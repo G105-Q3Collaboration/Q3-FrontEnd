@@ -10,7 +10,7 @@ const Post = ({ username, content, createdAt, deletePost, postId }) => {
         <p className="username mt-3">{username} shared a post:<br/>
           <small><Moment format="MMM D, YYYY" date={createdAt} /></small>
         </p>
-        <button onClick={deletePost(postId)}className="btn text-muted"><FaTrash /></button>
+        <button onClick={() => deletePost(postId)}className="btn text-muted"><FaTrash /></button>
       </div>
       <p className="lead pl-3 pr-3">{content}</p>
       {/* <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Cat"/> */}
