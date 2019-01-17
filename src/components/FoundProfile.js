@@ -17,5 +17,3 @@ return (
 }
 
 export default FoundProfile
-
-{/* <Link to={`/profile/${username}`} >See Posts</Link>< */}
