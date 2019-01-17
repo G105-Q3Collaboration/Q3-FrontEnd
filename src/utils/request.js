@@ -14,6 +14,7 @@ const request = (path, method = 'get', body = null) => {
     },
     data: body
   })
+  
 }
 
 export default request
