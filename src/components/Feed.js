@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AddPost from './AddPost'
 import Post from './Post'
 import axios from 'axios'
+import Spinner from 'reactjs-simple-spinner'
 const url = 'http://localhost:8000/accounts'
 export default class Feed extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ export default class Feed extends Component {
       id: '',
       posts : [],
       urlparams: '',
-      loggedin: ''
+      loggedin: '',
+      isLoading: true
     }
   }
 
@@ -39,7 +41,8 @@ export default class Feed extends Component {
       const account = await this.getAccount()
       const posts = await axios.get(`${url}/${account.id}/posts`)
       this.setState({
-        posts: [...posts.data.reverse()]
+        posts: [...posts.data.reverse()],
+        isLoading: false
       })
     } catch (err) {
       console.log(err)
@@ -68,6 +71,24 @@ export default class Feed extends Component {
   }
 
   render() {
+    if (this.state.loggedin && this.state.isLoading) {
+      return (
+      <div className="main col-sm-8 mt-4">
+       <Spinner className="center" />
+      </div>
+      )
+    }
+
+    if (!this.state.loggedin) {
+      return (
+        <div className="main col-sm-8 mt-4 text-center">
+          <p className="lead">
+            Please <Link to="/">login</Link> to see <span className="username">{this.props.username}'s</span> full profile.
+          </p>
+        </div>
+      )
+    }
+
     return (
       <div className="main col-sm-8 mt-4">
         {
@@ -75,25 +96,27 @@ export default class Feed extends Component {
           <AddPost addPost={this.addPost} />
         }
         {
-          this.state.loggedin ?
-          this.state.posts.map(post =>
-            <Post
-              getPosts={this.getPosts}
-              key={post.id}
-              id={post.id}
-              username={this.props.username}
-              loggedInPerson={this.state.loggedin}
-              content={post.content}
-              deletePost={this.deletePost}
-            />
-          )
-          :
-          <div className="oops lead text-center mt-5">
-            <h3 className="text-muted">Posts preview is not available right meow</h3>
-            <p>
-              Please <Link to="/signup">sign-up</Link> to see <span className="username">{this.props.username}'s</span> full profile.
+          this.state.loggedin && !this.state.loading && this.state.posts.length > 0 ?
+            this.state.posts.map(post =>
+              <Post
+                getPosts={this.getPosts}
+                key={post.id}
+                id={post.id}
+                username={this.props.username}
+                loggedInPerson={this.state.loggedin}
+                content={post.content}
+                deletePost={this.deletePost}
+              />
+            )
+            :
+            <p className="lead text-center">
+              {
+                this.state.loggedin === this.props.username ?
+                 <span className="text-muted">you don't have any posts yet</span>
+                :
+                 <span className="text-muted">{this.props.username} doesn't have any posts yet</span>
+              }
             </p>
-          </div>
         }
       </div>
     )
