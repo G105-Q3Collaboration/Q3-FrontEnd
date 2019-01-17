@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AddPost from './AddPost'
 import Post from './Post'
 import Search from './Search'
+import FoundProfile from './FoundProfile'
 import axios from 'axios'
 const url = 'http://localhost:8000/accounts'
 export default class Feed extends Component {
@@ -80,12 +81,10 @@ export default class Feed extends Component {
         Object.values(post).reduce((i, b) => i || (typeof b === 'string' ?
           b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false) // need a search: '' state
       )
-      console.log(data)
       this.setState({
         searchedPosts: data,
         submittedSearch:true
       })
-      // console.log("these are the found posts", this.state.searchedPosts)
       return data
     } catch (err) {
       console.log(err)
@@ -107,12 +106,14 @@ export default class Feed extends Component {
           <AddPost addPost={this.addPost} />
         }
         {
-          <div>HELLO the found friends accounts/links component will show here</div>
-
-
-          // this.state.submittedSearch ? this.state.searchedPosts.map(post =>
-          //   <Post username={post.account_id} content={post.content}/>
-          // ):null
+          this.state.submittedSearch ? this.state.searchedPosts.map(post =>
+            <FoundProfile 
+          profilepic={post.profilepic} 
+          username={post.username}
+          type={post.type}
+          age={post.age}
+          bio={post.bio}/>
+          ):null
         }
         {
           this.state.loggedin ?
