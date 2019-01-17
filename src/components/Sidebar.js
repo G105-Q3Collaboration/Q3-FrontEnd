@@ -6,13 +6,13 @@ export default class Sidebar extends Component {
     super(props)
 
     this.state = {
-      collapse: false
+      expand: false
     }
   }
 
   handleAbout = () => {
     this.setState({
-      collapse: !this.state.collapse
+      expand: !this.state.expand
     })
   }
 
@@ -28,22 +28,11 @@ export default class Sidebar extends Component {
           </div>
         </div>
 
-        <ul className="profile-stats list-group mt-4">
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            Interactions
-            <span className="badge badge-success badge-pill">14</span>
-          </li>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            Posts
-            <span className="badge badge-success badge-pill">2</span>
-          </li>
-        </ul>
-
         <ul className="list-group mt-4">
           <li className="list-group-item justify-content-between align-items-center">
-            <FaThumbtack className="text-primary" /> About {this.props.username}
+            <FaThumbtack className="text-primary" /> About <span className="username">{this.props.username}</span>
             {
-              this.state.collapse ?
+              this.state.expand ?
                 <FaChevronDown className="text-muted float-right" onClick={this.handleAbout} />
                 :
                 <FaChevronUp className="text-muted float-right" onClick={this.handleAbout} />
@@ -51,7 +40,7 @@ export default class Sidebar extends Component {
           </li>
 
           {
-            this.state.collapse &&
+            this.state.expand &&
             <span>
               <li className="list-group-item justify-content-between align-items-center">
                 <span className="lead"><FaFish className="text-info" /> My Favorite Food</span>

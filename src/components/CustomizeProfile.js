@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import request from '../utils/request'
-
 export default class CustomizeProfile extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      displayname: this.props.displayname
+      displayname: this.props.displayname, // this was returning NULL,
+      showErrorMessage: false
     }
   }
 
   handleCustomize = event => {
     event.preventDefault()
-
     const { profilepic, displayname, age, bio, type, eatinghabits, quirks } = event.target
 
     request(`/accounts/${this.props.user.id}`, 'put', {
@@ -24,28 +23,33 @@ export default class CustomizeProfile extends Component {
       eatinghabits: eatinghabits.value,
       quirks: quirks.value
     })
-      .then(response => {
-        this.props.history.push({
-          pathname: `/profile/${this.props.user.username}`,
-          state: { username: this.props.user.username}
-        })
+    .then(response => {
+      this.props.history.push({
+        pathname: `/profile/${this.props.user.username}`,
+        state: { username: this.props.user.username }
       })
-      .catch(error => {
-        console.log(error)
-        this.setState({ showErrorMessage: true })
-      })
+    })
+    .catch(error => {
+      console.log(error)
+      this.setState({ showErrorMessage: true })
+    })
   }
   render() {
     return (
       <div className="border rounded p-5 col-sm-8 mt-5 mr-auto ml-auto">
+        {
+          this.state.showErrorMessage &&
+          <div className="alert alert-danger">
+            Incorrect format
+          </div>
+        }
         <h2>Customize Your Profile</h2>
         <form onSubmit={this.handleCustomize}>
-
           <div className="form-group">
             <label htmlFor="profilepic">Profile Image</label>
             <input
               type="url"
-              // pattern="^(http|https):([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
+              pattern="^(http|https):([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
               className="form-control" id="profilepic" name="profilepic"
               placeholder="please enter an image url" />
           </div>
@@ -55,7 +59,7 @@ export default class CustomizeProfile extends Component {
             <input
               type="text"
               className="form-control" id="displayname" name="displayname"
-              placeholder="what do your people call you?" value={this.state.displayname} />
+              placeholder="what do your people call you?" />
           </div>
 
           <div className="form-group">
@@ -71,7 +75,7 @@ export default class CustomizeProfile extends Component {
             <textarea
               type="text" rows="2"
               className="form-control" id="bio" name="bio"
-              placeholder="some words to live by...">
+              placeholder="some words to live by..." >
             </textarea>
           </div>
 
@@ -88,7 +92,7 @@ export default class CustomizeProfile extends Component {
             <textarea
               type="text" rows="4"
               className="form-control" id="eatinghabits" name="eatinghabits"
-              placeholder="what kind of food do you eat?">
+              placeholder="what kind of food do you eat?" >
             </textarea>
           </div>
 
@@ -97,7 +101,7 @@ export default class CustomizeProfile extends Component {
             <textarea
               type="text" rows="4"
               className="form-control" id="quirks" name="quirks"
-              placeholder="what makes you happy? what kind of games do you like to play?">
+              placeholder="what makes you happy? what kind of games do you like to play?" >
             </textarea>
           </div>
 

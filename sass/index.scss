@@ -30,6 +30,35 @@ body {
   .card-img-top {
     border-radius: 0;
   }
+
+  .add-reaction {
+    bottom: -1rem;
+  }
+
+  .react {
+    margin-top: 2.2rem;
+    right: 1rem;
+  }
+
+  .reaction {
+    margin-right: 2px;
+  }
+}
+
+.text-warning {
+  background-color: #0c36a8;
+  border-radius: 100%;
+}
+
+.text-poop {
+  color: #854646
+}
+
+.main {
+
+  .close svg {
+    margin: -2.5rem .5rem 0 0
+  }
 }
 
 .sidebar {
