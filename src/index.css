@@ -6,25 +6,8 @@ body {
   body a:hover {
     text-decoration: none; }
 
-.navbar-collapse input.form-control {
-  margin-right: .5rem;
-  width: auto; }
-
 .username {
   text-transform: capitalize; }
-
-.post .card-img-top {
-  border-radius: 0; }
-
-.post .add-reaction {
-  bottom: -1rem; }
-
-.post .react {
-  margin-top: 2.2rem;
-  right: 1rem; }
-
-.post .reaction {
-  margin-right: 2px; }
 
 .text-warning {
   background-color: #0c36a8;
@@ -33,9 +16,18 @@ body {
 .text-poop {
   color: #854646; }
 
+.main .post .card-img-top {
+  border-radius: 0; }
+
+.main .post .add-reaction {
+  bottom: -1rem; }
+
+.main .post .react {
+  margin-top: 2.2rem;
+  right: 1rem; }
+
+.main .post .reaction {
+  margin-right: 2px; }
+
 .main .close svg {
   margin: -2.5rem .5rem 0 0; }
-
-@media screen and (max-width: 414px) {
-  .sidebar .profile-stats {
-    display: none !important; } }
