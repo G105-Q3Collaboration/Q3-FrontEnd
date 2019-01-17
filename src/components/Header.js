@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import { FaSearch, FaUser, FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+const url = 'http://localhost:8000/accounts'
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props) 
+
+    this.state = {
+      search:'',
+      posts:[],
+      submittedSearch:false
+    }
+  }
 
   SignInSignOutButton = () => {
     if (this.props.user) {
@@ -24,10 +35,6 @@ export default class Header extends Component {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="navbar-collapse my-2">
-              <form className="form-inline my-lg-0 m-auto">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" />
-                <button className="btn btn-success my-2 my-sm-0" type="submit"><FaSearch /></button>
-              </form>
 
               {
                 this.props.user ?
