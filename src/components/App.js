@@ -5,6 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Profile from './Profile'
 import CustomizeProfile from './CustomizeProfile'
+import Search from './Search'
 // import AuthenticatedRoute from '../higherOrderComponent/AuthenticatedRoute'
 import request from '../utils/request'
 
@@ -16,7 +17,8 @@ export default class App extends Component {
     this.state = {
       authentication: {
         pending: true,
-        user: null
+        user: null,
+        search:false
       }
     }
   }
@@ -44,6 +46,7 @@ export default class App extends Component {
               <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user} />
               <div className="container">
                 <Switch>
+                  <Route path="/search" render={(props) => <Search {...props}/>} />
                   <Route path="/profile/:username" render={(props) => <Profile {...props} authentication={this.state.authentication} user={this.state.authentication.user} />}  />
                   <Route path="/customize/:username" render={(props) => <CustomizeProfile {...props} authentication={this.state.authentication} user={this.state.authentication.user} />} />
                   <Route path="/signup" render={(props) => <Signup {...props} setAuthentication={this.setAuthentication}/>} />
