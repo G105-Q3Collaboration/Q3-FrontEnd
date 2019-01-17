@@ -89,6 +89,7 @@ export default class Feed extends Component {
         searchedPosts: data,
         submittedSearch:true
       })
+      
       return data
     } catch (err) {
       console.log(err)
@@ -99,6 +100,13 @@ export default class Feed extends Component {
     this.setState({
       [event.target.name] : event.target.value
     })
+    console.log(this.state.search.length)
+    if(this.state.search.length <2) {
+      this.setState({
+        submittedSearch:false
+      })
+      console.log(this.state.submittedSearch)
+    }
   }
 
   render() {
