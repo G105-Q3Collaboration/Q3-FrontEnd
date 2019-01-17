@@ -16,18 +16,12 @@ body {
 .text-poop {
   color: #854646; }
 
-.main .image-wrapper {
-  max-height: 150px;
-  overflow: hidden; }
-  .main .image-wrapper img {
-    position: relative;
-    bottom: 1rem;
-    transform: scale(1.2); }
-
-@media screen and (min-width: 960px) {
-  .main .card-group .card {
-    width: 33%;
-    flex: auto; } }
+.main .media {
+  width: 49%; }
+  .main .media:nth-child(odd) {
+    margin-right: .5rem; }
+  .main .media img {
+    width: 100px; }
 
 .main .post .card-img-top {
   border-radius: 0; }

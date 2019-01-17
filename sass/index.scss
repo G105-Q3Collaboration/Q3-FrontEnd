@@ -28,24 +28,15 @@ body {
 
 .main {
 
-  .image-wrapper {
-    max-height: 150px;
-    overflow: hidden;
+  .media {
+    width: 49%;
+
+    &:nth-child(odd) {
+      margin-right: .5rem;
+    }
 
     img {
-      position: relative;
-      bottom: 1rem;
-      transform: scale(1.2)
-    }
-  }
-
-  .card-group {
-
-    @media screen and (min-width: 960px) {
-      .card {
-        width: 33%;
-        flex: auto
-      }
+      width: 100px;
     }
   }
 
@@ -73,12 +64,3 @@ body {
     margin: -2.5rem .5rem 0 0
   }
 }
-
-// .sidebar {
-
-//   @media screen and (max-width: 414px) {
-//     .profile-stats {
-//       display: none !important;
-//     }
-//   }
-// }
