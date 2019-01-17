@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaSearch, FaUser, FaSignInAlt } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 export default class Search extends Component {
   constructor(props) {

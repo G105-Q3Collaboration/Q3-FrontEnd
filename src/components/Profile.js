@@ -21,7 +21,6 @@ export default class App extends Component {
     try {
       let response = await axios.get(url)
       let account = await response.data.filter(account => account.username === this.props.match.params.username)
-      console.log('props from Profile.js', this.props)
       this.setState({ account: [...account] })
     } catch (err) {
       console.log(err)

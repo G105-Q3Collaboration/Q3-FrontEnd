@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { FaSearch, FaUser, FaSignInAlt } from 'react-icons/fa'
+import { FaUser, FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-const url = 'http://localhost:8000/accounts'
 
 export default class Header extends Component {
   constructor(props) {
