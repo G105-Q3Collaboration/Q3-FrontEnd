@@ -22,9 +22,6 @@ export default class CustomizeProfile extends Component {
 
     const { displayname, age, bio, type, eatinghabits, quirks } = event.target
 
-    const { displayname, age, bio, type, eatinghabits, quirks } = event.target
-
-    // under profilepic add a default url value 
     request(`/accounts/${this.props.user.id}`, 'put', {
       profilepic: this.state.profilepic,
       displayname: displayname.value,
@@ -50,14 +47,14 @@ export default class CustomizeProfile extends Component {
     acceptedFiles.forEach(file => {
       const reader = new FileReader()
       reader.onload = () => {
-        request(`/accounts/${this.props.user.id}/avatar`, 'post', { 
-          image: reader.result 
+        request(`/accounts/${this.props.user.id}/avatar`, 'post', {
+          image: reader.result
         })
-        .then(result => {
-          this.setState({profilepic: result.data.image})
-          
-        })
-        .catch(error => console.log(error))
+          .then(result => {
+            this.setState({ profilepic: result.data.image })
+
+          })
+          .catch(error => console.log(error))
       }
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
