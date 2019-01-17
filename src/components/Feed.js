@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import AddPost from './AddPost'
 import Post from './Post'
+import Search from './Search'
+import FoundProfile from './FoundProfile'
 import axios from 'axios'
 import Spinner from 'reactjs-simple-spinner'
 const url = 'http://localhost:8000/accounts'
@@ -11,11 +13,15 @@ export default class Feed extends Component {
 
     this.state = {
       id: '',
-      posts : [],
+      posts:[],
+      searchedPosts:[],
       urlparams: '',
       loggedin: '',
       isLoading: true,
       reactions: []
+      search:'',
+      data:[],
+      submittedSearch:false
     }
   }
 
@@ -72,6 +78,30 @@ export default class Feed extends Component {
     }
   }
 
+  handleSearchSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await axios.get(`${url}`)
+      const data = await response.data.filter(post =>
+        Object.values(post).reduce((i, b) => i || (typeof b === 'string' ?
+          b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false) // need a search: '' state
+      )
+      this.setState({
+        searchedPosts: data,
+        submittedSearch:true
+      })
+      return data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value
+    })
+  }
+
   render() {
     if (this.state.loggedin && this.state.isLoading) {
       return (
@@ -93,6 +123,7 @@ export default class Feed extends Component {
 
     return (
       <div className="main col-sm-8 mt-4">
+          <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange}/>
         {
           this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
@@ -108,7 +139,6 @@ export default class Feed extends Component {
                 loggedInPerson={this.state.loggedin}
                 content={post.content}
                 deletePost={this.deletePost}
-                // getReactions={this.getReactions}
                 reactions={this.state.reactions}
               />
             )
@@ -120,6 +150,34 @@ export default class Feed extends Component {
                 :
                  <span className="text-muted">{this.props.username} doesn't have any posts yet</span>
               }
+
+          this.state.submittedSearch ? this.state.searchedPosts.map(post =>
+            <FoundProfile 
+          profilepic={post.profilepic} 
+          username={post.username}
+          type={post.type}
+          age={post.age}
+          bio={post.bio}/>
+          ):null
+        }
+        {
+          this.state.loggedin ?
+          this.state.posts.map(post =>
+            <Post
+              getPosts={this.getPosts}
+              key={post.id}
+              id={post.id}
+              username={this.props.username}
+              loggedInPerson={this.state.loggedin}
+              content={post.content}
+              deletePost={this.deletePost}
+            />
+          )
+          :
+          <div className="oops lead text-center mt-5">
+            <h3 className="text-muted">Posts preview is not available right meow</h3>
+            <p>
+              Please <Link to="/signup">sign-up</Link> to see <span className="username">{this.props.username}'s</span> full profile.
             </p>
         }
       </div>
