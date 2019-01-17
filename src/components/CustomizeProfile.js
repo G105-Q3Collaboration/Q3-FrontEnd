@@ -22,6 +22,9 @@ export default class CustomizeProfile extends Component {
 
     const { displayname, age, bio, type, eatinghabits, quirks } = event.target
 
+    const { displayname, age, bio, type, eatinghabits, quirks } = event.target
+
+    // under profilepic add a default url value 
     request(`/accounts/${this.props.user.id}`, 'put', {
       profilepic: this.state.profilepic,
       displayname: displayname.value,
@@ -31,15 +34,35 @@ export default class CustomizeProfile extends Component {
       eatinghabits: eatinghabits.value,
       quirks: quirks.value
     })
-    .then(response => {
-      this.props.history.push({
-        pathname: `/profile/${this.props.user.username}`,
-        state: { username: this.props.user.username }
+      .then(response => {
+        this.props.history.push({
+          pathname: `/profile/${this.props.user.username}`,
+          state: { username: this.props.user.username }
+        })
       })
-    })
-    .catch(error => {
-      console.log(error)
-      this.setState({ showErrorMessage: true })
+      .catch(error => {
+        console.log(error)
+        this.setState({ showErrorMessage: true })
+      })
+    }
+
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    acceptedFiles.forEach(file => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        request(`/accounts/${this.props.user.id}/avatar`, 'post', { 
+          image: reader.result 
+        })
+        .then(result => {
+          this.setState({profilepic: result.data.image})
+          
+        })
+        .catch(error => console.log(error))
+      }
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+
+      reader.readAsDataURL(file)
     })
   }
 
