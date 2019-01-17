@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
   constructor(props) {
-    super(props) 
+    super(props)
 
     this.state = {
       search:'',
@@ -24,19 +24,15 @@ export default class Header extends Component {
     return (
       <header>
         <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-          <div className="container">
+          <div className="container mr-auto">
 
             <a className="navbar-brand" href="/">Squeaker!</a>
 
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-              aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="navbar-collapse my-2">
+            <div className="navbar-right">
 
               {
                 this.props.user ?
-                <span className="ml-2 text-white username"> <FaUser /> Welcome, {this.props.user.username} </span>
+                <span className="ml-2 text-white username"> <FaUser /> Hi {this.props.user.username}! </span>
                 :
                 <Link className="btn text-white ml-2" to="/">Sign In </Link>
               }

@@ -83,22 +83,23 @@ export default class Feed extends Component {
       const response = await axios.get(`${url}`)
       const data = await response.data.filter(post =>
         Object.values(post).reduce((i, b) => i || (typeof b === 'string' ?
-          b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false) // need a search: '' state
+          b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false)
       )
       this.setState({
         searchedPosts: data,
-        submittedSearch:true
+        submittedSearch: true
       })
-      return data
     } catch (err) {
       console.log(err)
     }
   }
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.name] : event.target.value
-    })
+    if (!event.target.value) {
+      this.setState({
+        [event.target.name] : event.target.value
+      })
+    }
   }
 
   render() {
@@ -121,13 +122,14 @@ export default class Feed extends Component {
     }
 
     return (
-      <div className="main col-sm-8 mt-4">
-          <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange}/>
+      <div className="main col-md-8 mt-4">
+        <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
         {
           this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
         }
-        {
+        <div className={this.state.submittedSearch && "card-group mb-4"}>
+          {
           this.state.submittedSearch && this.state.searchedPosts.map(post =>
             <FoundProfile
               profilepic={post.profilepic}
@@ -135,7 +137,8 @@ export default class Feed extends Component {
               type={post.type}
               age={post.age}
               bio={post.bio} />)
-        }
+          }
+        </div>
         {
           this.state.loggedin && !this.state.loading && this.state.posts.length > 0 ?
             this.state.posts.map(post =>

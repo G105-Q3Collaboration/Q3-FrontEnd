@@ -16,6 +16,19 @@ body {
 .text-poop {
   color: #854646; }
 
+.main .image-wrapper {
+  max-height: 150px;
+  overflow: hidden; }
+  .main .image-wrapper img {
+    position: relative;
+    bottom: 1rem;
+    transform: scale(1.2); }
+
+@media screen and (min-width: 960px) {
+  .main .card-group .card {
+    width: 33%;
+    flex: auto; } }
+
 .main .post .card-img-top {
   border-radius: 0; }
 
