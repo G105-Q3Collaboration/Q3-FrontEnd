@@ -32,6 +32,26 @@ body {
   }
 }
 
+.reaction {
+  margin-right: 2px;
+
+  .text-warning {
+    background-color: #0c36a8;
+    border-radius: 100%;
+  }
+
+  .text-poop {
+    color: #854646
+  }
+}
+
+.main {
+
+  .close svg {
+    margin: -2.5rem .5rem 0 0
+  }
+}
+
 .sidebar {
 
   @media screen and (max-width: 414px) {

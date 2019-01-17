@@ -14,7 +14,8 @@ export default class Feed extends Component {
       posts : [],
       urlparams: '',
       loggedin: '',
-      isLoading: true
+      isLoading: true,
+      reactions: []
     }
   }
 
@@ -24,8 +25,8 @@ export default class Feed extends Component {
 
   getAccount = async () => {
     try {
-      let response = await axios.get(url)
-      let account = await response.data.find(user => user.username === this.props.username)
+      const response = await axios.get(url)
+      const account = await response.data.find(user => user.username === this.props.username)
       this.setState({
         id: account.id,
         loggedin: this.props.user.username // if i pass this in, you can't see posts when you're logged out
@@ -53,6 +54,7 @@ export default class Feed extends Component {
     try {
       const account = await this.getAccount()
       await axios.post(`${url}/${account.id}/posts`, post)
+
       this.getPosts()
     } catch (err) {
       console.log(err)
@@ -74,12 +76,12 @@ export default class Feed extends Component {
     if (this.state.loggedin && this.state.isLoading) {
       return (
       <div className="main col-sm-8 mt-4">
-       <Spinner className="center" />
+       <Spinner size="massive" lineSize={12} className="center" />
       </div>
       )
     }
 
-    if (!this.state.loggedin) {
+    if (!this.state.loggedin && this.state.isLoading) {
       return (
         <div className="main col-sm-8 mt-4 text-center">
           <p className="lead">
@@ -106,6 +108,8 @@ export default class Feed extends Component {
                 loggedInPerson={this.state.loggedin}
                 content={post.content}
                 deletePost={this.deletePost}
+                // getReactions={this.getReactions}
+                reactions={this.state.reactions}
               />
             )
             :

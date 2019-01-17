@@ -19,9 +19,8 @@ export default class App extends Component {
 
   getAccount = async () => {
     try {
-      let response = await axios.get(url)
-      let account = await response.data.filter(account => account.username === this.props.match.params.username)
-      console.log('props from Profile.js', this.props)
+      const response = await axios.get(url)
+      const account = await response.data.filter(account => account.username === this.props.match.params.username)
       this.setState({ account: [...account] })
     } catch (err) {
       console.log(err)
