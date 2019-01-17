@@ -38,12 +38,13 @@ export default class App extends Component {
       .catch(err => this.setAuthentication(null))
   }
 
+
   render() {
     return (
       <div className="app">
         <BrowserRouter>
             <div>
-              <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user} />
+              <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user}/>
               <div className="container">
                 <Switch>
                   <Route path="/search" render={(props) => <Search {...props}/>} />
