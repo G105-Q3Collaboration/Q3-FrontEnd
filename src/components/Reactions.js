@@ -3,7 +3,7 @@ import { FaThumbsUp, FaPoop, FaSadCry, FaGrinSquint, FaHeart } from 'react-icons
 
 const Reaction = (props) => {
   return (
-    <div className="reactions p-2">
+    <div className="reaction p-2">
       {
         props.reactions.map(val =>
           <span id={val.id} key={val.id} className="reaction">

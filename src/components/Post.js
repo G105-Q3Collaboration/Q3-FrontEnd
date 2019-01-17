@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { FaEllipsisH, FaTimes } from 'react-icons/fa'
 import Reactions from './Reactions'
+import AddReaction from './AddReaction'
 import Moment from 'react-moment'
 import axios from 'axios';
 const url = 'http://localhost:8000/accounts'
@@ -32,6 +33,7 @@ export default class Post extends Component {
       const response = await axios.get(url)
       const account = await response.data.find(account => account.username === this.props.username)
       this.setState({ accountid: account.id })
+      return account
     } catch (err) {
       console.log(err)
     }
@@ -40,8 +42,20 @@ export default class Post extends Component {
   getReactions = async () => {
     try {
       const account = await this.getAccount()
-      const reactions = await axios.get(`${url}/${account}/posts/${this.props.id}/reactions`)
+      const reactions = await axios.get(`${url}/${account.id}/posts/${this.props.id}/reactions`)
+      console.log(account);
+
       this.setState({ reactions: [...reactions.data] })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  addReaction = async (reaction) => {
+    try {
+      const account = await this.getAccount()
+      await axios.post(`${url}/${account.id}/posts/${this.props.id}/reactions`, {reaction})
+      this.getReactions()
     } catch (err) {
       console.log(err)
     }
@@ -59,11 +73,16 @@ export default class Post extends Component {
               className="close text-muted m-0 text-right"><FaTimes /></div>}
         </div>
         <p className="lead pl-3 pr-3">{ReactHtmlParser(this.props.content)}</p>
-        {/* <img className="card-img-top" src="https://watermarked.cutcaster.com/cutcaster-photo-100067117-Cat-side-profile.jpg" alt="Cat"/> */}
-        <span className="close text-muted p-2 text-left">
+        <span className="close add-reaction position-relative text-muted p-2 text-left">
           <FaEllipsisH onClick={this.handleExpand} />
         </span>
-        <Reactions reactions={this.state.reactions} />
+        <div className="d-flex justify-content-between align-items-center">
+          <Reactions reactions={this.state.reactions} />
+          {
+            this.state.expand &&
+            <AddReaction addReaction={this.addReaction} />
+          }
+        </div>
       </div>
     )
   }

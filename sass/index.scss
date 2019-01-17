@@ -30,19 +30,28 @@ body {
   .card-img-top {
     border-radius: 0;
   }
+
+  .add-reaction {
+    bottom: -1rem;
+  }
+
+  .react {
+    margin-top: 2.2rem;
+    right: 1rem;
+  }
+
+  .reaction {
+    margin-right: 2px;
+  }
 }
 
-.reaction {
-  margin-right: 2px;
+.text-warning {
+  background-color: #0c36a8;
+  border-radius: 100%;
+}
 
-  .text-warning {
-    background-color: #0c36a8;
-    border-radius: 100%;
-  }
-
-  .text-poop {
-    color: #854646
-  }
+.text-poop {
+  color: #854646
 }
 
 .main {

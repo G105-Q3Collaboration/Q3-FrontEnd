@@ -16,13 +16,22 @@ body {
 .post .card-img-top {
   border-radius: 0; }
 
-.reaction {
+.post .add-reaction {
+  bottom: -1rem; }
+
+.post .react {
+  margin-top: 2.2rem;
+  right: 1rem; }
+
+.post .reaction {
   margin-right: 2px; }
-  .reaction .text-warning {
-    background-color: #0c36a8;
-    border-radius: 100%; }
-  .reaction .text-poop {
-    color: #854646; }
+
+.text-warning {
+  background-color: #0c36a8;
+  border-radius: 100%; }
+
+.text-poop {
+  color: #854646; }
 
 .main .close svg {
   margin: -2.5rem .5rem 0 0; }
