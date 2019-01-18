@@ -15,19 +15,18 @@ export default class AddPost extends Component {
 
   modules = {
     toolbar: [
-      [{ 'header': [1, 2, false] }],
+      [{ 'header': [1, 2, 3] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image'],
-      ['clean']
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      ['link', 'image', 'video']
     ]
   }
 
   formats = [
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
+    'list', 'bullet',
+    'link', 'image', 'video',
   ]
 
   onSubmit = (e) => {
@@ -46,7 +45,7 @@ export default class AddPost extends Component {
         <form onSubmit={this.onSubmit}>
           <ReactQuill onChange={this.handleChange} value={this.state.content} modules={this.modules} formats={this.formats}
             placeholder="Squeak..."/>
-            <button className="mt-2 btn btn-success text-right">Add Post</button>
+            <button className="mt-2 btn btn-outline-info text-right">Add Post</button>
         </form>
       </div>
     )

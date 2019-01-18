@@ -55,7 +55,7 @@ export default class Login extends Component {
               Invalid Username or Password
             </div>
           }
-          <button type="submit" className="btn btn-success mr-3">Submit</button>
+          <button type="submit" className="btn btn-outline-info mr-3">Submit</button>
           <Link to="/signup">Create an Account</Link>
         </form>
       </div>

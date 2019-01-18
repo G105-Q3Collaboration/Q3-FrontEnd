@@ -1,27 +1,49 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Knewave);
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0; }
+  body a {
+    color: #17a2b8; }
   body a:hover {
     text-decoration: none; }
 
 .username {
   text-transform: capitalize; }
+  .navbar-right .username {
+    vertical-align: text-top; }
 
-.text-warning {
-  background-color: #0c36a8;
+.text-warning svg {
+  background-color: #000000;
   border-radius: 100%; }
 
 .text-poop {
   color: #854646; }
 
+header a.navbar-brand {
+  font-family: 'Knewave', cursive;
+  font-size: 2rem;
+  text-rendering: geometricPrecision; }
+
+@media only screen and (max-width: 575px) {
+  header .navbar-right,
+  header .navbar-brand {
+    width: 100%;
+    text-align: center; } }
+
+.main .card-group {
+  background: #ffffff;
+  margin-top: -.9rem;
+  width: 96%;
+  z-index: 1000; }
+
 .main .media {
-  width: 49%; }
-  .main .media:nth-child(odd) {
-    margin-right: .5rem; }
+  width: 33%; }
+  .main .media > a {
+    display: inline; }
   .main .media img {
-    width: 100px; }
+    width: 100%; }
 
 .main .post .card-img-top {
   border-radius: 0; }

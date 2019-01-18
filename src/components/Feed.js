@@ -6,7 +6,7 @@ import Search from './Search'
 import FoundProfile from './FoundProfile'
 import axios from 'axios'
 import Spinner from 'reactjs-simple-spinner'
-const url = 'http://localhost:8000/accounts'
+const url = process.env.REACT_APP_API_URL
 export default class Feed extends Component {
   constructor(props) {
     super(props)
@@ -31,11 +31,11 @@ export default class Feed extends Component {
 
   getAccount = async () => {
     try {
-      const response = await axios.get(url)
+      const response = await axios.get(`${url}/accounts`)
       const account = await response.data.find(user => user.username === this.props.username)
       this.setState({
         id: account.id,
-        loggedin: this.props.user.username, // if i pass this in, you can't see posts when you're logged out
+        loggedin: this.props.user.username,
         loggedinId: this.props.user.id
       })
       return account
@@ -47,7 +47,7 @@ export default class Feed extends Component {
   getPosts = async () => {
     try {
       const account = await this.getAccount()
-      const posts = await axios.get(`${url}/${account.id}/posts`)
+      const posts = await axios.get(`${url}/accounts/${account.id}/posts`)
       this.setState({
         posts: [...posts.data.reverse()],
         isLoading: false
@@ -60,7 +60,7 @@ export default class Feed extends Component {
   addPost = async (post) => {
     try {
       const account = await this.getAccount()
-      await axios.post(`${url}/${account.id}/posts`, post)
+      await axios.post(`${url}/accounts/${account.id}/posts`, post)
 
       this.getPosts()
     } catch (err) {
@@ -71,7 +71,7 @@ export default class Feed extends Component {
   deletePost = async (id) => {
     try {
       const account = await this.getAccount()
-      await axios.delete(`${url}/${account.id}/posts/${id}`)
+      await axios.delete(`${url}/accounts/${account.id}/posts/${id}`)
 
       this.getPosts()
     } catch (err) {
@@ -82,7 +82,7 @@ export default class Feed extends Component {
   handleSearchSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await axios.get(`${url}`)
+      const response = await axios.get(`${url}/accounts`)
       const data = await response.data.filter(post =>
         Object.values(post).reduce((i, b) => i || (typeof b === 'string' ?
           b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false)
@@ -106,7 +106,7 @@ export default class Feed extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name] : event.target.value
-    })    
+    })
   }
 
   render() {
@@ -131,21 +131,21 @@ export default class Feed extends Component {
     return (
       <div className="main col-sm-12 col-md-8 mt-4">
         <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
+        <div className={this.state.submittedSearch && "card-group justify-content-left border rounded position-absolute shadow-sm"}>
+          {
+            this.state.submittedSearch && this.state.searchedPosts.map(post =>
+              <FoundProfile
+                profilepic={post.profilepic}
+                username={post.username}
+                type={post.type}
+                age={post.age}
+                bio={post.bio} />)
+          }
+        </div>
         {
           this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
         }
-        <div className={this.state.submittedSearch && "card-group justify-content-between"}>
-          {
-          this.state.submittedSearch && this.state.searchedPosts.map(post =>
-            <FoundProfile
-              profilepic={post.profilepic}
-              username={post.username}
-              type={post.type}
-              age={post.age}
-              bio={post.bio} />)
-          }
-        </div>
         {
           this.state.loggedin && !this.state.loading && this.state.posts.length > 0 ?
             this.state.posts.map(post =>

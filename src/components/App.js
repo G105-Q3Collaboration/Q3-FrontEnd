@@ -6,10 +6,7 @@ import Signup from './Signup'
 import Profile from './Profile'
 import CustomizeProfile from './CustomizeProfile'
 import Search from './Search'
-// import AuthenticatedRoute from '../higherOrderComponent/AuthenticatedRoute'
 import request from '../utils/request'
-
-
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -37,7 +34,6 @@ export default class App extends Component {
       .then(response => this.setAuthentication(response.data))
       .catch(err => this.setAuthentication(null))
   }
-
 
   render() {
     return (

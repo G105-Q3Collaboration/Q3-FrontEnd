@@ -34,6 +34,7 @@ export default class CustomizeProfile extends Component {
       this.setState({ showErrorMessage: true })
     })
   }
+
   render() {
     return (
       <div className="border rounded p-5 col-sm-8 mt-5 mr-auto ml-auto">
@@ -105,8 +106,8 @@ export default class CustomizeProfile extends Component {
             </textarea>
           </div>
 
-          <button type="submit" className="btn btn-success mr-2">Submit</button>
-          <button type="reset" className="btn btn-success mr-2">Start Over</button>
+          <button type="submit" className="btn btn-outline-info mr-2">Submit</button>
+          <button type="reset" className="btn btn-outline-info mr-2">Start Over</button>
 
         </form>
       </div>
