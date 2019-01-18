@@ -43,7 +43,7 @@ export default class Post extends Component {
     try {
       const account = await this.getAccount()
       const reactions = await axios.get(`${url}/${account.id}/posts/${this.props.id}/reactions`)
-      console.log(account);
+      // console.log(account);
 
       this.setState({ reactions: [...reactions.data] })
     } catch (err) {
