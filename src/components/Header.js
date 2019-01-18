@@ -25,9 +25,7 @@ export default class Header extends Component {
       <header>
         <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
           <div className="container mr-auto">
-
-            <a className="navbar-brand" href="/">Squeaker!</a>
-
+            <a className="navbar-brand" href={!this.props.user ? `/` : `/profile/${this.props.user.username}`}>Squeaker!</a>
             <div className="navbar-right">
 
               {

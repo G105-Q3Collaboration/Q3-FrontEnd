@@ -20,7 +20,8 @@ export default class Feed extends Component {
       isLoading: true,
       search:'',
       data:[],
-      submittedSearch:false
+      submittedSearch: false,
+      loggedinId: ''
     }
   }
 
@@ -34,7 +35,8 @@ export default class Feed extends Component {
       const account = await response.data.find(user => user.username === this.props.username)
       this.setState({
         id: account.id,
-        loggedin: this.props.user.username // if i pass this in, you can't see posts when you're logged out
+        loggedin: this.props.user.username, // if i pass this in, you can't see posts when you're logged out
+        loggedinId: this.props.user.id
       })
       return account
     } catch(err) {
@@ -148,6 +150,7 @@ export default class Feed extends Component {
                 id={post.id}
                 username={this.props.username}
                 loggedInPerson={this.state.loggedin}
+                loggedinId={this.state.loggedinId}
                 content={post.content}
                 deletePost={this.deletePost}
                 reactions={this.state.reactions}

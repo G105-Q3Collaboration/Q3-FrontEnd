@@ -31,10 +31,17 @@ body {
 
 .main .post .react {
   margin-top: 2.2rem;
-  right: 1rem; }
+  right: 1rem;
+  z-index: 1000; }
+  .main .post .react input[type="button"] {
+    margin-right: 5px;
+    opacity: 0;
+    position: absolute;
+    width: 0; }
+  .main .post .react span {
+    margin-right: 5px; }
+  .main .post .react .reaction {
+    margin-right: 2px; }
 
-.main .post .reaction {
-  margin-right: 2px; }
-
-.main .close svg {
+.main .post .close svg {
   margin: -2.5rem .5rem 0 0; }

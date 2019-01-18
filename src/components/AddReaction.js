@@ -10,7 +10,7 @@ export default class AddReaction extends Component {
     }
   }
 
-  onChange = (e) => {
+  onClick = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -21,19 +21,19 @@ export default class AddReaction extends Component {
   render() {
     return (
       <div className="react border rounded bg-white p-2 position-absolute">
-        <input name="reaction" onChange={this.onChange} value="like" type="radio" />
+        <input name="reaction" onClick={this.onClick} value="like" type="button" />
         <span className="text-primary"><FaThumbsUp /></span>
 
-        <input name="reaction" onChange={this.onChange} value="love" type="radio" />
+        <input name="reaction" onClick={this.onClick} value="love" type="button" />
         <span className="text-danger"><FaHeart /></span>
 
-        <input name="reaction" onChange={this.onChange} value="laugh" type="radio" />
+        <input name="reaction" onClick={this.onClick} value="laugh" type="button" />
         <span className="text-warning"><FaGrinSquint /></span>
 
-        <input name="reaction" onChange={this.onChange} value="cry" type="radio" />
+        <input name="reaction" onClick={this.onClick} value="cry" type="button" />
         <span className="text-warning"><FaSadCry /></span>
 
-        <input name="reaction" onChange={this.onChange} value="poop" type="radio" />
+        <input name="reaction" onClick={this.onClick} value="poop" type="button" />
         <span className="text-poop"><FaPoop /></span>
       </div>
     )
