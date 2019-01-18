@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { FaSearch } from 'react-icons/fa'
 
 const Search = (props) => {
   return (
