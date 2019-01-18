@@ -14,6 +14,10 @@ body {
   .navbar-right .username {
     vertical-align: text-top; }
 
+iframe {
+  min-height: 600px;
+  width: 100%; }
+
 .text-warning svg {
   background-color: #000000;
   border-radius: 100%; }
