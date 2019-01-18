@@ -63,6 +63,26 @@ export default class CustomizeProfile extends Component {
     })
   }
 
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    acceptedFiles.forEach(file => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        request(`/accounts/${this.props.user.id}/avatar`, 'post', {
+          image: reader.result
+        })
+          .then(result => {
+            this.setState({ profilepic: result.data.image })
+
+          })
+          .catch(error => console.log(error))
+      }
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+
+      reader.readAsDataURL(file)
+    })
+  }
+
   render() {
     return (
       <div className="border rounded p-5 col-sm-8 mt-5 mr-auto ml-auto">
