@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FaSearch } from 'react-icons/fa'
 
 export default class Search extends Component {
   constructor(props) {
