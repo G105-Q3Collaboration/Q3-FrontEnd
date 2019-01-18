@@ -71,13 +71,13 @@ export default class Post extends Component {
         </div>
         <p className="lead pl-3 pr-3">{ReactHtmlParser(this.props.content)}</p>
         <span className="close add-reaction position-relative text-muted p-2 text-left">
-          <FaEllipsisH onClick={this.handleExpand} />
+          <FaEllipsisH onMouseEnter={this.handleExpand} />
         </span>
         <div className="d-flex justify-content-between align-items-center">
           <Reactions reactions={this.state.reactions} />
           {
             this.state.expand &&
-            <AddReaction addReaction={this.addReaction} />
+            <AddReaction addReaction={this.addReaction} onMouseLeave={this.handleExpand} />
           }
         </div>
       </div>

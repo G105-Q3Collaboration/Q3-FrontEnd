@@ -22,7 +22,7 @@ body {
   color: #854646; }
 
 header a.navbar-brand {
-  font-family: 'Knewave', cursive;
+  font-family: 'Knewave', sans-serif;
   font-size: 2rem;
   text-rendering: geometricPrecision; }
 
@@ -52,7 +52,7 @@ header a.navbar-brand {
   bottom: -1rem; }
 
 .main .post .react {
-  margin-top: 2.2rem;
+  margin-top: 1.2rem;
   right: 1rem;
   z-index: 1000; }
   .main .post .react input[type="button"] {
