@@ -10,7 +10,6 @@ const FoundProfile = ({ profilepic, username, type, age }) => {
           <small className="text-muted">{type}, {age} years old</small>
         </div>
       </a>
-      <hr/>
     </div>
   )
 }
