@@ -18,7 +18,7 @@ export default class AddPost extends Component {
       [{ 'header': [1, 2, 3] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      ['link', 'image', 'video']
+      ['link', 'video']
     ]
   }
 
@@ -26,7 +26,7 @@ export default class AddPost extends Component {
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet',
-    'link', 'image', 'video',
+    'link', 'video',
   ]
 
   onSubmit = (e) => {

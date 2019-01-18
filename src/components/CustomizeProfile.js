@@ -72,7 +72,6 @@ export default class CustomizeProfile extends Component {
         })
           .then(result => {
             this.setState({ profilepic: result.data.image })
-
           })
           .catch(error => console.log(error))
       }
@@ -95,7 +94,6 @@ export default class CustomizeProfile extends Component {
         <h2>Customize Your Profile</h2>
         <form onSubmit={this.handleCustomize}>
 
-          <label htmlFor="profilepic">Profile Image</label>
           <br />
           <Dropzone onDrop={this.onDrop} id='profilepic' name='profilepic'>
             {({ getRootProps, getInputProps, isDragActive }) => {
@@ -108,7 +106,8 @@ export default class CustomizeProfile extends Component {
                   {
                     isDragActive ?
                       <p> Upload a profile image by dropping file here...</p> :
-                      <p>Upload a profile image by dropping file here, or click to select file.</p>
+                      <p className="content">Upload a profile image by dropping file here,
+                      or click to select file. (Max. size 15MB)</p>
                   }
                 </div>
               )
