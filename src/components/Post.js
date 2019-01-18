@@ -53,6 +53,9 @@ export default class Post extends Component {
     try {
       await axios.post(`${url}/accounts/${this.props.loggedinId}/posts/${this.props.id}/reactions`, { reaction })
       this.getReactions()
+      this.setState({
+        expand: false
+      })
     } catch (err) {
       console.log(err)
     }
@@ -71,13 +74,13 @@ export default class Post extends Component {
         </div>
         <p className="lead pl-3 pr-3">{ReactHtmlParser(this.props.content)}</p>
         <span className="close add-reaction position-relative text-muted p-2 text-left">
-          <FaEllipsisH onMouseEnter={this.handleExpand} />
+          <FaEllipsisH onClick={this.handleExpand}/>
         </span>
         <div className="d-flex justify-content-between align-items-center">
           <Reactions reactions={this.state.reactions} />
           {
             this.state.expand &&
-            <AddReaction addReaction={this.addReaction} onMouseLeave={this.handleExpand} />
+            <AddReaction addReaction={this.addReaction} />
           }
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaUser, FaSignInAlt, FaAsterisk, FaGrinSquintTears, FaPaw } from 'react-icons/fa'
+import { FaSignInAlt, FaAsterisk, FaGrinSquintTears, FaPaw } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
