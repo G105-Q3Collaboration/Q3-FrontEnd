@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaSignInAlt, FaAsterisk, FaGrinSquintTears, FaPaw } from 'react-icons/fa'
+import { FaSignInAlt, FaEdit, FaGrinSquintTears, FaPaw } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
@@ -30,7 +30,7 @@ export default class Header extends Component {
 
               {
                 this.props.user ?
-                  <span className="ml-2 text-white username"> <FaPaw /> Hi {this.props.user.username}! </span>
+                <span className="ml-2 text-white username"> <FaPaw /> Hi {this.props.user.username}! </span>
                 :
                 <Link className="btn text-white ml-2" to="/">Sign In </Link>
               }
@@ -38,7 +38,7 @@ export default class Header extends Component {
               {
                 this.props.user ?
                   <span>
-                    <Link className="btn text-white" to={`/customize/${this.props.user.username}`}><FaAsterisk />&nbsp; Customize Profile</Link>
+                    &nbsp;<Link className="btn text-white" to={`/customize/${this.props.user.username}`}><FaEdit />&nbsp; Edit Profile</Link>
                     <Link className="btn text-white" to="/" onClick={() => this.SignInSignOutButton()}><FaSignInAlt />&nbsp; Sign Out</Link>
                   </span>
                   :
