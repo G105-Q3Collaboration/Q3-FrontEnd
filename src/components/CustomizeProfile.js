@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
+import Dropzone from 'react-dropzone'
 import request from '../utils/request'
 export default class CustomizeProfile extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      displayname: this.props.displayname, // this was returning NULL,
-      showErrorMessage: false
+      displayname: this.props.displayname,
+      showErrorMessage: false,
+      profilepic: ''
     }
   }
 
   handleCustomize = event => {
     event.preventDefault()
-    const { profilepic, displayname, age, bio, type, eatinghabits, quirks } = event.target
 
+    const { displayname, age, bio, type, eatinghabits, quirks } = event.target
+
+    // under profilepic add a default url value 
     request(`/accounts/${this.props.user.id}`, 'put', {
-      profilepic: profilepic.value,
+      profilepic: this.state.profilepic,
       displayname: displayname.value,
       age: age.value,
       bio: bio.value,
@@ -35,6 +39,26 @@ export default class CustomizeProfile extends Component {
     })
   }
 
+  onDrop = (acceptedFiles, rejectedFiles) => {
+    acceptedFiles.forEach(file => {
+      const reader = new FileReader()
+      reader.onload = () => {
+        request(`/accounts/${this.props.user.id}/avatar`, 'post', { 
+          image: reader.result 
+        })
+        .then(result => {
+          this.setState({profilepic: result.data.image})
+          
+        })
+        .catch(error => console.log(error))
+      }
+      reader.onabort = () => console.log('file reading was aborted')
+      reader.onerror = () => console.log('file reading has failed')
+
+      reader.readAsDataURL(file)
+    })
+  }
+
   render() {
     return (
       <div className="border rounded p-5 col-sm-8 mt-5 mr-auto ml-auto">
@@ -46,14 +70,26 @@ export default class CustomizeProfile extends Component {
         }
         <h2>Customize Your Profile</h2>
         <form onSubmit={this.handleCustomize}>
-          <div className="form-group">
-            <label htmlFor="profilepic">Profile Image</label>
-            <input
-              type="url"
-              pattern="^(http|https):([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
-              className="form-control" id="profilepic" name="profilepic"
-              placeholder="please enter an image url" />
-          </div>
+
+          <label htmlFor="profilepic">Profile Image</label>
+          <br />
+          <Dropzone onDrop={this.onDrop} id='profilepic' name='profilepic'>
+            {({ getRootProps, getInputProps, isDragActive }) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  className={('dropzone', { 'dropzone--isActive': isDragActive })}
+                >
+                  <input {...getInputProps()} />
+                  {
+                    isDragActive ?
+                      <p> Upload a profile image by dropping file here...</p> :
+                      <p>Upload a profile image by dropping file here, or click to select file.</p>
+                  }
+                </div>
+              )
+            }}
+          </Dropzone>
 
           <div className="form-group">
             <label htmlFor="displayname">Pet Name</label>
@@ -110,7 +146,7 @@ export default class CustomizeProfile extends Component {
           <button type="reset" className="btn btn-outline-info mr-2">Start Over</button>
 
         </form>
-      </div>
+      </div >
     )
   }
 }
