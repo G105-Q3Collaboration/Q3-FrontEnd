@@ -91,17 +91,22 @@ export default class Feed extends Component {
         searchedPosts: data,
         submittedSearch: true
       })
+
+      if(this.state.search.length <2) {
+        this.setState({
+          submittedSearch:false
+        })
+      }
+      return data
     } catch (err) {
       console.log(err)
     }
   }
 
   handleChange = (event) => {
-    if (!event.target.value) {
-      this.setState({
-        [event.target.name] : event.target.value
-      })
-    }
+    this.setState({
+      [event.target.name] : event.target.value
+    })    
   }
 
   render() {
