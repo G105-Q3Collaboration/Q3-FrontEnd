@@ -6,25 +6,8 @@ body {
   body a:hover {
     text-decoration: none; }
 
-.navbar-collapse input.form-control {
-  margin-right: .5rem;
-  width: auto; }
-
 .username {
   text-transform: capitalize; }
-
-.post .card-img-top {
-  border-radius: 0; }
-
-.post .add-reaction {
-  bottom: -1rem; }
-
-.post .react {
-  margin-top: 2.2rem;
-  right: 1rem; }
-
-.post .reaction {
-  margin-right: 2px; }
 
 .text-warning {
   background-color: #0c36a8;
@@ -33,9 +16,32 @@ body {
 .text-poop {
   color: #854646; }
 
-.main .close svg {
-  margin: -2.5rem .5rem 0 0; }
+.main .media {
+  width: 49%; }
+  .main .media:nth-child(odd) {
+    margin-right: .5rem; }
+  .main .media img {
+    width: 100px; }
 
-@media screen and (max-width: 414px) {
-  .sidebar .profile-stats {
-    display: none !important; } }
+.main .post .card-img-top {
+  border-radius: 0; }
+
+.main .post .add-reaction {
+  bottom: -1rem; }
+
+.main .post .react {
+  margin-top: 2.2rem;
+  right: 1rem;
+  z-index: 1000; }
+  .main .post .react input[type="button"] {
+    margin-right: 5px;
+    opacity: 0;
+    position: absolute;
+    width: 0; }
+  .main .post .react span {
+    margin-right: 5px; }
+  .main .post .react .reaction {
+    margin-right: 2px; }
+
+.main .post .close svg {
+  margin: -2.5rem .5rem 0 0; }

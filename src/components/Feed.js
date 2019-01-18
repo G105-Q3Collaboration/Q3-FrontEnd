@@ -20,7 +20,8 @@ export default class Feed extends Component {
       isLoading: true,
       search:'',
       data:[],
-      submittedSearch:false
+      submittedSearch: false,
+      loggedinId: ''
     }
   }
 
@@ -34,7 +35,8 @@ export default class Feed extends Component {
       const account = await response.data.find(user => user.username === this.props.username)
       this.setState({
         id: account.id,
-        loggedin: this.props.user.username // if i pass this in, you can't see posts when you're logged out
+        loggedin: this.props.user.username, // if i pass this in, you can't see posts when you're logged out
+        loggedinId: this.props.user.id
       })
       return account
     } catch(err) {
@@ -83,12 +85,13 @@ export default class Feed extends Component {
       const response = await axios.get(`${url}`)
       const data = await response.data.filter(post =>
         Object.values(post).reduce((i, b) => i || (typeof b === 'string' ?
-          b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false) // need a search: '' state
+          b.toLowerCase().includes(this.state.search.toLowerCase()) : false), false)
       )
       this.setState({
         searchedPosts: data,
-        submittedSearch:true
+        submittedSearch: true
       })
+
       if(this.state.search.length <2) {
         this.setState({
           submittedSearch:false
@@ -126,13 +129,14 @@ export default class Feed extends Component {
     }
 
     return (
-      <div className="main col-sm-8 mt-4">
-          <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange}/>
+      <div className="main col-sm-12 col-md-8 mt-4">
+        <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
         {
           this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
         }
-        {
+        <div className={this.state.submittedSearch && "card-group justify-content-between"}>
+          {
           this.state.submittedSearch && this.state.searchedPosts.map(post =>
             <FoundProfile
               profilepic={post.profilepic}
@@ -140,7 +144,8 @@ export default class Feed extends Component {
               type={post.type}
               age={post.age}
               bio={post.bio} />)
-        }
+          }
+        </div>
         {
           this.state.loggedin && !this.state.loading && this.state.posts.length > 0 ?
             this.state.posts.map(post =>
@@ -150,6 +155,7 @@ export default class Feed extends Component {
                 id={post.id}
                 username={this.props.username}
                 loggedInPerson={this.state.loggedin}
+                loggedinId={this.state.loggedinId}
                 content={post.content}
                 deletePost={this.deletePost}
                 reactions={this.state.reactions}

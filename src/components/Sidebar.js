@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
 
   render() {
     return (
-      <div className="sidebar col-sm-4 mt-4">
+      <div className="sidebar col-md-4 mt-4">
         <div className="card">
           <img className="card-img-top" src={this.props.profilepic} alt="Cat" />
           <div className="card-body center-aligned">

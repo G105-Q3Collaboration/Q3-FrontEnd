@@ -15,7 +15,11 @@ const Reaction = (props) => {
           </span>
         )
       }
-      &nbsp;<small>{props.reactions.length} reactions</small>
+      &nbsp;
+      <small>
+        {props.reactions.length}&nbsp;
+        {props.reactions.length > 1 ? `reactions` : `reaction`}
+      </small>
     </div>
   )
 }

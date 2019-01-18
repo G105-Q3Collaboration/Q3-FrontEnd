@@ -13,36 +13,8 @@ body {
   }
 }
 
-.navbar-collapse {
-
-  input.form-control {
-    margin-right: .5rem;
-    width: auto;
-  }
-}
-
 .username {
   text-transform: capitalize;
-}
-
-.post {
-
-  .card-img-top {
-    border-radius: 0;
-  }
-
-  .add-reaction {
-    bottom: -1rem;
-  }
-
-  .react {
-    margin-top: 2.2rem;
-    right: 1rem;
-  }
-
-  .reaction {
-    margin-right: 2px;
-  }
 }
 
 .text-warning {
@@ -56,16 +28,51 @@ body {
 
 .main {
 
-  .close svg {
-    margin: -2.5rem .5rem 0 0
+  .media {
+    width: 49%;
+
+    &:nth-child(odd) {
+      margin-right: .5rem;
+    }
+
+    img {
+      width: 100px;
+    }
   }
-}
 
-.sidebar {
+  .post {
 
-  @media screen and (max-width: 414px) {
-    .profile-stats {
-      display: none !important;
+    .card-img-top {
+      border-radius: 0;
+    }
+
+    .add-reaction {
+      bottom: -1rem;
+    }
+
+    .react {
+      margin-top: 2.2rem;
+      right: 1rem;
+      z-index: 1000;
+
+       input[type="button"] {
+        margin-right: 5px;
+        opacity: 0;
+        position: absolute;
+        width: 0;
+      }
+
+      span {
+        margin-right: 5px;
+      }
+
+    .reaction {
+      margin-right: 2px;
+    }
+  }
+
+    .close svg {
+      margin: -2.5rem .5rem 0 0
     }
   }
 }
