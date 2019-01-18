@@ -5,7 +5,7 @@ import Reactions from './Reactions'
 import AddReaction from './AddReaction'
 import Moment from 'react-moment'
 import axios from 'axios';
-const url = 'http://localhost:8000/accounts'
+const url = process.env.REACT_APP_API_URL
 
 export default class Post extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class Post extends Component {
 
   getAccount = async () => {
     try {
-      const response = await axios.get(url)
+      const response = await axios.get(`${url}/accounts`)
       const account = await response.data.find(account => account.username === this.props.username)
       this.setState({ accountid: account.id })
       return account
@@ -42,10 +42,8 @@ export default class Post extends Component {
   getReactions = async () => {
     try {
       const account = await this.getAccount()
-      const reactions = await axios.get(`${url}/${account.id}/posts/${this.props.id}/reactions`)
+      const reactions = await axios.get(`${url}/accounts/${account.id}/posts/${this.props.id}/reactions`)
       this.setState({ reactions: [...reactions.data] })
-      console.log('hello', this.props.loggedinId)
-
     } catch (err) {
       console.log(err)
     }
@@ -53,7 +51,7 @@ export default class Post extends Component {
 
   addReaction = async (reaction) => {
     try {
-      await axios.post(`${url}/${this.props.loggedinId}/posts/${this.props.id}/reactions`, { reaction })
+      await axios.post(`${url}/accounts/${this.props.loggedinId}/posts/${this.props.id}/reactions`, { reaction })
       this.getReactions()
     } catch (err) {
       console.log(err)
