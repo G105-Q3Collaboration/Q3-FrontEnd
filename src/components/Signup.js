@@ -12,7 +12,6 @@ export default class Signup extends Component {
 
   handleSignUp = event => {
     event.preventDefault()
-
     const { displayname, username, password } = event.target
 
     request('/accounts', 'post', {
@@ -59,7 +58,7 @@ export default class Signup extends Component {
               Invalid Username or Password
             </div>
           }
-          <button type="submit" className="btn btn-success mr-3">Submit</button>
+          <button type="submit" className="btn btn-outline-info mr-3">Submit</button>
           <Link to="/">Already have an account?</Link>
         </form>
       </div>

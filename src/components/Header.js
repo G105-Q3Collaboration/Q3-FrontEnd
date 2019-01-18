@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FaUser, FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaPaw, FaGrinSquintTears } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
@@ -23,14 +23,14 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar navbar-dark bg-info">
           <div className="container mr-auto">
-            <a className="navbar-brand" href={!this.props.user ? `/` : `/profile/${this.props.user.username}`}>Squeaker!</a>
+            <a className="navbar-brand" href={!this.props.user ? `/` : `/profile/${this.props.user.username}`}><FaGrinSquintTears className="text-white-50" /> Squeaker!</a>
             <div className="navbar-right">
 
               {
                 this.props.user ?
-                <span className="ml-2 text-white username"> <FaUser /> Hi {this.props.user.username}! </span>
+                  <span className="ml-2 text-white username"> <FaPaw /> Hi {this.props.user.username}! </span>
                 :
                 <Link className="btn text-white ml-2" to="/">Sign In </Link>
               }

@@ -106,7 +106,7 @@ export default class Feed extends Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name] : event.target.value
-    })    
+    })
   }
 
   render() {
@@ -131,21 +131,22 @@ export default class Feed extends Component {
     return (
       <div className="main col-sm-12 col-md-8 mt-4">
         <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
+        <div className={this.state.submittedSearch && "card-group justify-content-left border rounded position-absolute shadow-sm"}>
+          {
+            this.state.submittedSearch && this.state.searchedPosts.map(post =>
+              <FoundProfile
+                profilepic={post.profilepic}
+                username={post.username}
+                type={post.type}
+                age={post.age}
+                bio={post.bio} />)
+          }
+        </div>
+
         {
           this.state.loggedin === this.props.username &&
           <AddPost addPost={this.addPost} />
         }
-        <div className={this.state.submittedSearch && "card-group justify-content-between"}>
-          {
-          this.state.submittedSearch && this.state.searchedPosts.map(post =>
-            <FoundProfile
-              profilepic={post.profilepic}
-              username={post.username}
-              type={post.type}
-              age={post.age}
-              bio={post.bio} />)
-          }
-        </div>
         {
           this.state.loggedin && !this.state.loading && this.state.posts.length > 0 ?
             this.state.posts.map(post =>
