@@ -14,7 +14,8 @@ export default class Post extends Component {
     this.state = {
       expand: false,
       accountid: '',
-      reactions: []
+      reactions: [],
+      showErrorMessage: false
     }
   }
 
@@ -58,6 +59,15 @@ export default class Post extends Component {
       })
     } catch (err) {
       console.log(err)
+      this.setState({
+        showErrorMessage: true,
+        expand: false
+      })
+      window.setTimeout(() => {
+        this.setState({
+          showErrorMessage: false
+        });
+      }, 2000);
     }
   }
 
@@ -72,7 +82,13 @@ export default class Post extends Component {
             <div onClick={() => this.props.deletePost(this.props.id)}
               className="close text-muted m-0 text-right"><FaTimes /></div>}
         </div>
-        <p className="lead pl-3 pr-3">{ReactHtmlParser(this.props.content)}</p>
+        <p className="lead pl-3 pr-2">{ReactHtmlParser(this.props.content)}</p>
+        {
+          this.state.showErrorMessage &&
+          <small className="error-handler p-3 text-muted">
+            You can only react to a post once!
+          </small>
+        }
         <span className="close add-reaction position-relative text-muted p-2 text-left">
           <FaEllipsisH onClick={this.handleExpand}/>
         </span>

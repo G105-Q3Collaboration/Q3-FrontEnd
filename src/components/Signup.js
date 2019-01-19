@@ -29,9 +29,13 @@ export default class Signup extends Component {
         this.props.history.push({pathname:`/customize/${username.value}`, state: {id:username.value}})
       })
       .catch(error => {
-
         console.log(error)
         this.setState({ showErrorMessage: true })
+        window.setTimeout(() => {
+          this.setState({
+            showErrorMessage: false
+          });
+        }, 2000);
       })
   }
 
@@ -54,7 +58,7 @@ export default class Signup extends Component {
           </div>
           {
             this.state.showErrorMessage &&
-            <div className="alert alert-danger">
+            <div className="error-handler alert alert-danger">
               Invalid Username or Password
             </div>
           }

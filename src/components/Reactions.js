@@ -5,7 +5,7 @@ const Reaction = (props) => {
   return (
     <div className="reaction p-2">
       {
-        props.reactions.map(val =>
+        [...new Set(props.reactions)].map(val =>
           <span id={val.id} key={val.id} className="reaction">
             { val.reaction === 'like' && <span className="text-primary"><FaThumbsUp /></span> }
             { val.reaction === 'poop' && <span className="text-poop"><FaPoop /></span> }

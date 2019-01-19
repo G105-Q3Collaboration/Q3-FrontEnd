@@ -33,6 +33,11 @@ export default class Login extends Component {
         .catch(error => {
           console.log(error)
           this.setState({ showErrorMessage: true })
+          window.setTimeout(() => {
+            this.setState({
+              showErrorMessage: false
+            });
+          }, 2000);
         })
     }
 
@@ -51,7 +56,7 @@ export default class Login extends Component {
           </div>
           {
             this.state.showErrorMessage &&
-            <div className="alert alert-danger">
+            <div className="error-handler alert alert-danger">
               Invalid Username or Password
             </div>
           }

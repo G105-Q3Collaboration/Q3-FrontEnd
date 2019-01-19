@@ -131,7 +131,7 @@ export default class Feed extends Component {
     return (
       <div className="main col-sm-12 col-md-8 mt-4">
         <Search handleSearchSubmit={this.handleSearchSubmit} handleChange={this.handleChange} />
-        <div className={this.state.submittedSearch && "card-group justify-content-left border rounded position-absolute shadow-sm"}>
+        <div className={this.state.submittedSearch ? "card-group justify-content-left border rounded position-absolute shadow-sm" : undefined}>
           {
             this.state.submittedSearch && this.state.searchedPosts.map(post =>
               <FoundProfile
