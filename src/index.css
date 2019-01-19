@@ -9,9 +9,6 @@ body {
   body a:hover {
     text-decoration: none; }
 
-.error-handler {
-  transition: all .3s ease; }
-
 .username {
   text-transform: capitalize; }
   .navbar-right .username {
@@ -21,8 +18,11 @@ iframe {
   min-height: 400px;
   width: 100%; }
 
-.ql-editor.ql-blank {
+.ql-editor {
   height: 100px; }
+  .ql-editor.ql-blank::before {
+    font: 300 1.5rem 'Roboto', sans-serif;
+    color: #999999; }
 
 .text-warning svg {
   background-color: #000000;
