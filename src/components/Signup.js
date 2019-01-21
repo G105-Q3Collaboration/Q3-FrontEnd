@@ -41,8 +41,11 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
-        <form onSubmit={this.handleSignUp}>
+      <div className="col-sm-6 mt-5 mr-auto ml-auto">
+        <div className={this.state.showErrorMessage ? "error-handler alert alert-danger" : "error-handler alert alert-danger invisible"}>
+          Username not available!
+        </div>
+        <form className="border rounded p-5" onSubmit={this.handleSignUp}>
           <div className="form-group">
             <label htmlFor="displayname">Pet Name</label>
             <input type="text" className="form-control" id="displayname" name="displayname" placeholder="enter your pet's name" required />
@@ -56,14 +59,8 @@ export default class Signup extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
           </div>
-          {
-            this.state.showErrorMessage &&
-            <div className="error-handler alert alert-danger">
-              Invalid Username or Password
-            </div>
-          }
           <button type="submit" className="btn btn-outline-info mr-3">Submit</button>
-          <Link to="/">Already have an account?</Link>
+          <Link className="small" to="/">Already have an account?</Link>
         </form>
       </div>
     )

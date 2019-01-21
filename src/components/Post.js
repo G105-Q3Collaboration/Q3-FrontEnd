@@ -82,13 +82,10 @@ export default class Post extends Component {
             <div onClick={() => this.props.deletePost(this.props.id)}
               className="close text-muted m-0 text-right"><FaTimes /></div>}
         </div>
-        <p className="lead pl-3 pr-2">{ReactHtmlParser(this.props.content)}</p>
-        {
-          this.state.showErrorMessage &&
-          <small className="error-handler p-3 text-muted">
-            You can only react to a post once!
-          </small>
-        }
+        <p className="lead pl-3 pr-2 mb-0">{ReactHtmlParser(this.props.content)}</p>
+        <small className={this.state.showErrorMessage ? "error-handler text-muted" : "error-handler invisible"}>
+          You can only react to a post once!
+        </small>
         <span className="close add-reaction position-relative text-muted p-2 text-left">
           <FaEllipsisH onClick={this.handleExpand}/>
         </span>

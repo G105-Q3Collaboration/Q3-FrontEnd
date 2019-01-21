@@ -30,11 +30,12 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    if (this.state.pending) {
-      request('/auth/login')
-        .then(response => this.setAuthentication(response.data))
-        .catch(err => this.setAuthentication(null))
-    }
+    request('/auth/login')
+      .then(response => this.setAuthentication(response.data))
+      .catch(err => {
+        console.log(err);
+        this.setAuthentication(null)
+      })
   }
 
   render() {

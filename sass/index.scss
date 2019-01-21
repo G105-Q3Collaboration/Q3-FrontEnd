@@ -2,6 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 @import url(https://fonts.googleapis.com/css?family=Knewave);
 
+$transition: all .3s ease;
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -73,24 +75,27 @@ header {
   }
 
   .ql-editor {
-    height: 100px;
+    height: auto;
+    min-height: 100px;
 
     &.ql-blank::before {
       font: 300 1.5rem 'Roboto', sans-serif;
       color: #999999;
     }
-
-    p {
-      margin-bottom: 0;
-    }
   }
 
   iframe {
+    height: auto;
     min-height: 300px;
     width: 100%;
   }
 
   .post {
+    position: relative;
+
+    .lead p {
+      margin-bottom: 0;
+    }
 
     .card-img-top {
       border-radius: 0;
@@ -125,4 +130,21 @@ header {
       margin: -2.5rem .5rem 0 0
     }
   }
+}
+
+.error-handler {
+  text-align: center;
+  transition: $transition;
+
+  .post & {
+    bottom: .7rem;
+    left: 31%;
+    position: absolute;
+    right: 31%;
+  }
+}
+
+.invisible {
+  opacity: 0;
+  transition: $transition;
 }

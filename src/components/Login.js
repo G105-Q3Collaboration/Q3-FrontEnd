@@ -56,9 +56,12 @@ export default class Login extends Component {
           <Spinner size="massive" lineSize={12} className="center" />
         </div>
       :
-      <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
-        <h2>Account Login</h2>
-        <form onSubmit={this.handleLogin}>
+      <div className="col-sm-6 mt-5 mr-auto ml-auto">
+        <div className={this.state.showErrorMessage ? "error-handler alert alert-danger" : "error-handler alert alert-danger invisible"}>
+          Invalid Username or Password
+        </div>
+        <form className="border rounded p-5" onSubmit={this.handleLogin}>
+          <h2>Account Login</h2>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Username</label>
             <input type="text" className="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="enter username" required />
@@ -67,14 +70,8 @@ export default class Login extends Component {
             <label htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" id="password" name="password" placeholder="password" required />
           </div>
-          {
-            this.state.showErrorMessage &&
-            <div className="error-handler alert alert-danger">
-              Invalid Username or Password
-            </div>
-          }
           <button type="submit" className="btn btn-outline-info mr-3">Submit</button>
-          <Link to="/signup">Create an Account</Link>
+          <Link className="small" to="/signup">Create an Account</Link>
         </form>
       </div>
     )
