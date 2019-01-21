@@ -1,5 +1,5 @@
 
-<img src="../preview.png">
+<img src="https://github.com/squeaker-g105-q3/squeaker-frontend/blob/master/preview.png">
 
 # Introduction
 
