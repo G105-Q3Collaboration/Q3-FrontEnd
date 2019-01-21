@@ -14,16 +14,6 @@ body {
   .navbar-right .username {
     vertical-align: text-top; }
 
-iframe {
-  min-height: 400px;
-  width: 100%; }
-
-.ql-editor {
-  height: 100px; }
-  .ql-editor.ql-blank::before {
-    font: 300 1.5rem 'Roboto', sans-serif;
-    color: #999999; }
-
 .text-warning svg {
   background-color: #000000;
   border-radius: 100%; }
@@ -54,6 +44,18 @@ header a.navbar-brand {
     display: inline; }
   .main .media img {
     width: 100%; }
+
+.main .ql-editor {
+  height: 100px; }
+  .main .ql-editor.ql-blank::before {
+    font: 300 1.5rem 'Roboto', sans-serif;
+    color: #999999; }
+  .main .ql-editor p {
+    margin-bottom: 0; }
+
+.main iframe {
+  min-height: 300px;
+  width: 100%; }
 
 .main .post .card-img-top {
   border-radius: 0; }
