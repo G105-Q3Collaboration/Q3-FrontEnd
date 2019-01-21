@@ -1,7 +1,9 @@
 {
   "name": "squeaker-frontend",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "authors": "Katrina Agustin, Toby Peterson, Tristan Porter",
+  "license": "MIT",
+  "private": false,
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
