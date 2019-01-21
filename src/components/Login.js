@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Spinner from 'reactjs-simple-spinner'
 import request from '../utils/request'
 
 export default class Login extends Component {
@@ -7,8 +8,15 @@ export default class Login extends Component {
     constructor(props) {
       super(props)
       this.state = {
-        showErrorMessage: false
+        showErrorMessage: false,
+        isLoading: true
       }
+    }
+
+    componentDidMount() {
+      this.setState({
+        isLoading: false
+      })
     }
 
     handleLogin = event => {
@@ -43,6 +51,11 @@ export default class Login extends Component {
 
   render() {
     return (
+      this.state.isLoading ?
+        <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
+          <Spinner size="massive" lineSize={12} className="center" />
+        </div>
+      :
       <div className="border rounded p-5 col-sm-6 mt-5 mr-auto ml-auto">
         <h2>Account Login</h2>
         <form onSubmit={this.handleLogin}>

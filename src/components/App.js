@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Spinner from 'reactjs-simple-spinner'
 import Header from './Header'
 import Login from './Login'
 import Signup from './Signup'
@@ -16,8 +15,7 @@ export default class App extends Component {
       authentication: {
         pending: true,
         user: null,
-        search: false,
-        isLoading: true
+        search:false
       }
     }
   }
@@ -32,31 +30,20 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      isLoading: false
-    })
-
-    request('/auth/login')
-      .then(response => this.setAuthentication(response.data))
-      .catch(err => this.setAuthentication(null))
+    if (this.state.pending) {
+      request('/auth/login')
+        .then(response => this.setAuthentication(response.data))
+        .catch(err => this.setAuthentication(null))
+    }
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <div className="main col-sm-8 mt-4">
-          <Spinner size="massive" lineSize={12} className="center" />
-        </div>
-      )
-    }
-
     return (
       <div className="app">
         <BrowserRouter>
             <div>
               <Header setAuthentication={this.setAuthentication} user={this.state.authentication.user}/>
               <div className="container">
-
                 <Switch>
                   <Route path="/search" render={(props) => <Search {...props}/>} />
                   <Route path="/profile/:username" render={(props) => <Profile {...props} authentication={this.state.authentication} user={this.state.authentication.user} />}  />
