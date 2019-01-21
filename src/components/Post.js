@@ -76,7 +76,7 @@ export default class Post extends Component {
       <div className="post border rounded p-0 mb-4">
         <div className="pl-3 controls d-flex justify-content-between align-items-center">
           <p className="username mt-3">{this.props.username} shared a post:<br />
-            <small><Moment format="MMM D, YYYY" date={this.props.createdAt} /></small>
+            <small><Moment format="MMM D, YYYY HH:mm" fromNow>{this.props.created_at}</Moment></small>
           </p>
           {this.props.username === this.props.loggedInPerson &&
             <div onClick={() => this.props.deletePost(this.props.id)}

@@ -33,6 +33,7 @@ export default class Feed extends Component {
     try {
       const response = await axios.get(`${url}/accounts`)
       const account = await response.data.find(user => user.username === this.props.username)
+
       this.setState({
         id: account.id,
         loggedin: this.props.user.username,
@@ -48,6 +49,7 @@ export default class Feed extends Component {
     try {
       const account = await this.getAccount()
       const posts = await axios.get(`${url}/accounts/${account.id}/posts`)
+
       this.setState({
         posts: [...posts.data.reverse()],
         isLoading: false
@@ -156,6 +158,7 @@ export default class Feed extends Component {
                 username={this.props.username}
                 loggedInPerson={this.state.loggedin}
                 loggedinId={this.state.loggedinId}
+                created_at={post.created_at}
                 content={post.content}
                 deletePost={this.deletePost}
                 reactions={this.state.reactions}
