@@ -20,7 +20,7 @@ export default class Sidebar extends Component {
     return (
       <div className="sidebar col-md-4 mt-4">
         <div className="card">
-          <img className="card-img-top" src={this.props.profilepic} alt="Cat" />
+          <img className="card-img-top" src={this.props.profilepic} alt={this.props.username} />
           <div className="card-body center-aligned">
             <h5 className="username card-title mb-0">{this.props.username}</h5>
             <small className="initialism text-muted">{this.props.type}, {this.props.age} years old</small>
