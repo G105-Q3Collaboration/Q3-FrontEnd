@@ -66,11 +66,11 @@ header a.navbar-brand {
   .main .post .add-reaction {
     bottom: -1rem; }
   .main .post .react {
+    cursor: pointer;
     margin-top: 1.5rem;
     right: 1rem;
     z-index: 1000; }
     .main .post .react input[type="button"] {
-      cursor: pointer;
       margin-right: 5px;
       opacity: 0;
       position: absolute;
@@ -82,8 +82,7 @@ header a.navbar-brand {
   .main .post .close svg {
     margin: -2.5rem .5rem 0 0; }
 
-.sidebar svg,
-.react svg {
+.sidebar svg {
   cursor: pointer; }
 
 .error-handler {
@@ -91,9 +90,9 @@ header a.navbar-brand {
   transition: all 0.3s ease; }
   .post .error-handler {
     bottom: .7rem;
-    left: 31%;
+    left: 30%;
     position: absolute;
-    right: 31%; }
+    right: 30%; }
 
 .invisible {
   opacity: 0;
