@@ -133,8 +133,12 @@ header {
   }
 }
 
-.sidebar svg {
-  cursor: pointer;
+svg {
+
+  .sidebar &,
+  .react & {
+    cursor: pointer;
+  }
 }
 
 .error-handler {

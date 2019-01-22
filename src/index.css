@@ -82,7 +82,8 @@ header a.navbar-brand {
   .main .post .close svg {
     margin: -2.5rem .5rem 0 0; }
 
-.sidebar svg {
+.sidebar svg,
+.react svg {
   cursor: pointer; }
 
 .error-handler {
