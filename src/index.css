@@ -71,6 +71,7 @@ header a.navbar-brand {
     right: 1rem;
     z-index: 1000; }
     .main .post .react input[type="button"] {
+      cursor: pointer;
       margin-right: 5px;
       opacity: 0;
       position: absolute;
